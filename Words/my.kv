@@ -1,0 +1,239 @@
+<Container>:   # основное окно
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+
+    # определяем свойства
+    progress_bar: progress_bar
+    label_1: label_1
+    label_2:label_2
+    button_menu: button_menu
+    button_learned: button_learned
+    button_check: button_check
+    button_next: button_next
+
+    BoxLayout:   # горизонтальный бокс для прогрессбара и меню
+        spacing: 10
+        size_hint_y: 0.1
+
+        ProgressBar:
+            id: progress_bar
+            value: 0
+            max: 100
+
+        Button:
+            id: button_menu
+            size_hint: 0.25, 1
+
+            text: "Menu"
+            font_size: root.height/35   # размер шрифта привязываем к высоте окна приложения
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size   # вписывает текст в рамки объекта
+
+            on_release: root.popup_menu()
+
+    Label:
+        id: label_1
+        size_hint_y: 0.3
+        text: "Word"
+        font_size: root.height/23
+        halign: 'center'
+        valign: 'middle'
+        text_size: self.size
+
+    Label:
+        id: label_2
+        size_hint_y: 0.3
+
+        text: "Translation"
+        font_size: root.height/23
+        halign: 'center'
+        valign: 'middle'
+        text_size: self.size
+
+    BoxLayout:   # горизонтальный бокс для нижнего ряда кнопок
+        spacing: 5
+        size_hint_y: 0.15
+
+        Button:
+            id: button_learned
+            size_hint: 0.2, 1
+
+            text: "Done"
+            font_size: root.height/35
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+            on_release: root.dict_presence(cont_key = 'learned_popup')
+
+
+        Button:
+            id: button_check
+            size_hint: 0.35, 1
+
+            text: "Check"
+            font_size: root.height/35
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+            on_release: root.dict_presence(cont_key = 'check_translation')
+
+        Button:
+            id: button_next
+            size_hint: 0.45, 1
+
+            text: "Next one"
+            font_size: root.height/35
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+            on_release: root.dict_presence(cont_key = 'show_card')
+
+    Label:
+        text: ""
+        size_hint_y: 0.15
+
+
+<Menu>:   # всплывающее окно меню
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Button:
+            text: "Open"
+            font_size: app.root.height/37
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+            size_hint_y: 0.15
+            on_release: app.root.dict_presence(direction = 1, cont_key = 'open_file')
+
+        Button:
+            text: "Save dictionary"
+            font_size: app.root.height/37
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+            size_hint_y: 0.15
+            on_release: app.root.dict_presence(cont_key = 'save_file')
+
+        Button:
+            text: "Clear statistics"
+            font_size: app.root.height/37
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+            size_hint_y: 0.15
+            on_release: app.root.dict_presence(cont_key = 'clear_dict')
+
+        Button:
+            text: "Statistics"
+            font_size: app.root.height/37
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+            size_hint_y: 0.15
+            on_release: app.root.dict_presence(cont_key = 'statistics')
+
+
+<Open_file>:   # всплывающее окно открытия файла
+    o_f_button: o_f_button
+    o_f_filechooser: o_f_filechooser
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        FileChooserIconView:
+            id: o_f_filechooser
+            size_hint_y: 0.83
+
+        Button:
+            id: o_f_button
+            text: "Load"
+            size_hint_y: 0.17
+
+            font_size: app.root.height/35
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+<Save_file>:   # всплывающее окно сохранения файла
+    s_f_filechooser: s_f_filechooser
+    s_f_text_input: s_f_text_input
+    s_f_cancel_button: s_f_cancel_button
+    s_f_save_button: s_f_save_button
+
+    BoxLayout:
+        orientation: "vertical"
+
+        FileChooserIconView:
+            id: s_f_filechooser
+            size_hint_y: 0.73
+            on_selection: s_f_text_input.text = self.selection and self.selection[0] or ''
+
+        TextInput:
+            id: s_f_text_input
+            size_hint_y: None
+            size_hint_y: 0.10
+            text: '*.txt'
+            font_size: app.root.height/35
+            multiline: False
+            halign: 'center'
+            valign: 'middle'
+
+        BoxLayout:
+            size_hint_y: None
+            size_hint_y: 0.17
+
+            Button:
+                id: s_f_cancel_button
+                text: "Cancel"
+
+                font_size: app.root.height/35
+                halign: 'center'
+                valign: 'middle'
+                text_size: self.size
+
+            Button:
+                id: s_f_save_button
+                text: "Save"
+
+                font_size: app.root.height/35
+                halign: 'center'
+                valign: 'middle'
+                text_size: self.size
+
+<Confirm_popup>:   # всплывающее окно для подтверждения действия
+    label_popup: label_popup
+    button_popup: button_popup
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            id: label_popup
+            size_hint_y: 0.7
+
+            font_size: app.root.height/40
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+        Button:
+            id: button_popup
+            size_hint_y: 0.3
+
+            font_size: app.root.height/35
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+
+
