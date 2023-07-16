@@ -49,26 +49,27 @@ def play_audio():
     playsound("recorded_voice.wav")
 # Создание главного окна
 window = tk.Tk()
-window.title("English Sentences")
+window.title("Paralingva")
+window.iconbitmap('Words/py.ico')
 window.geometry("1920x1080")
 window.configure(bg="#000")
 # Текстовая метка для отображения предложений
-bb = Label(window, text="", bg="#000", fg="white", font=("Arial", 32))
+bb = Label(window, text="\n", bg="#000", fg="white", font=("Arial", 32))
 bb.pack()
 label = tk.Label(window, text=sentences[0], bg="#000", fg="white", font=("Arial", 48))
 label.pack(pady=20)
 cc = Label(window, text="", bg="#000", fg="white", font=("Arial", 32))
 cc.pack()
 # Кнопка "Далее"
-button_next = tk.Button(window, text="Next", command=next_sentence, bg="#585858", fg="white", font=("Arial", 32))
+button_next = tk.Button(window, text="Дальше", command=next_sentence, bg="#585858", fg="white", font=("Arial", 32))
 button_next.pack(pady=10)
 
 # Кнопка "Записать голос"
-button_record = tk.Button(window, text="Record Voice", command=record_voice, bg="#585858", fg="white", font=("Arial", 32))
+button_record = tk.Button(window, text="Записать голос", command=record_voice, bg="#585858", fg="white", font=("Arial", 32))
 button_record.pack(pady=10)
 
 # Кнопка "Прослушать запись"
-button_play = tk.Button(window, text="Play Audio", command=play_audio, bg="#585858", fg="white", font=("Arial", 32))
+button_play = tk.Button(window, text="Прослушать голос", command=play_audio, bg="#585858", fg="white", font=("Arial", 32))
 button_play.pack(pady=10)
 
 # Индекс текущего предложения

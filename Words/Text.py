@@ -1,7 +1,7 @@
 import tkinter as tk
 import random
 import os
-from tkinter import Tk, Label, Entry, Button, Toplevel, Canvas
+from tkinter import Tk, Label, Entry, Button, Toplevel
 
 sentences = [
     "Hello, how are you?",  # Пример предложений на английском
@@ -24,7 +24,8 @@ currentSentence = ""
 currentTranslation = ""
 
 window = tk.Tk()
-window.title("Text")
+window.title("Paralingva")
+window.iconbitmap('Words/py.ico')
 window.geometry("1920x1080")
 window.configure(bg="#000")
 def showSentence():
@@ -34,9 +35,9 @@ def showSentence():
 def checkTranslation():
     translation = translation_entry.get()
     if translation == currentTranslation:
-        result_label.config(text="Correct translation!", bg="#000", fg="white", font=("Arial", 32))
+        result_label.config(text="Правильный перевод!", bg="#000", fg="green", font=("Arial", 32))
     else:
-        result_label.config(text="Incorrect translation.", bg="#000", fg="white", font=("Arial", 32))
+        result_label.config(text="Неправильный перевод!", bg="#000", fg="red", font=("Arial", 32))
     translation_entry.delete(0, tk.END)
     getNextSentence()
 
@@ -60,13 +61,13 @@ sentence_label.pack()
 translation_entry = tk.Entry(window, fg="#000", font=("Arial", 32))
 translation_entry.pack()
 
-check_button = tk.Button(window, text="Check Translation", command=checkTranslation, bg="#585858", fg="white", font=("Arial", 32))
+check_button = tk.Button(window, text="Проверить", command=checkTranslation, bg="#585858", fg="white", font=("Arial", 32))
 check_button.pack()
 
 result_label = tk.Label(window, text="", bg="#000", fg="white", font=("Arial", 32))
 result_label.pack()
 
-next_button = tk.Button(window, text="Next Sentence", command=getNextSentence, bg="#585858", fg="white", font=("Arial", 32))
+next_button = tk.Button(window, text="Следующее предложение", command=getNextSentence, bg="#585858", fg="white", font=("Arial", 32))
 next_button.pack()
 
 window.mainloop()
