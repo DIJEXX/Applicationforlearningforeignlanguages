@@ -1,95 +1,81 @@
 import tkinter as tk
-import pyaudio
-import wave
-from tkinter import Tk, Label, Entry, Button, Toplevel, Canvas
+from tkinter import messagebox, Label
+import pyttsx3
+import sounddevice as sd
+from scipy.io.wavfile import write
+from playsound import playsound
 
-class AudioRecorder:
-    def __init__(self):
-        self.audio = pyaudio.PyAudio()
-        self.frames = []
-        self.stream = None
-    def start_recording(self):
-        format = pyaudio.paInt16
-        channels = 1
-        rate = 44100
-        chunk = 1024
+# Список предложений на английском языке
+sentences = [
+    "Hello, how are you?",
+    "What is your name?",
+    "Where are you from?",
+    "How old are you?",
+    "What do you like to do in your free time?"
+]
 
-        self.stream = self.audio.open(format=format,
-                                      channels=channels,
-                                      rate=rate,
-                                      input=True,
-                                      frames_per_buffer=chunk)
-        self.frames = []
-        while True:
-            data = self.stream.read(chunk)
-            self.frames.append(data)
-    def stop_recording(self):
-        self.stream.stop_stream()
-        self.stream.close()
-        self.audio.terminate()
-        filename = "recorded_audio.wav"
-        wf = wave.open(filename, "wb")
-        wf.setnchannels(1)
-        wf.setsampwidth(self.audio.get_sample_size(pyaudio.paInt16))
-        wf.setframerate(44100)
-        wf.writeframes(b"".join(self.frames))
-        wf.close()
-    def play_recording(self):
-        wf = wave.open("recorded_audio.wav", "rb")
-        format = self.audio.get_format_from_width(wf.getsampwidth())
-        channels = wf.getnchannels()
-        rate = wf.getframerate()
-        chunk = 1024
-        self.stream = self.audio.open(format=format,
-                                      channels=channels,
-                                      rate=rate,
-                                      output=True,
-                                      frames_per_buffer=chunk)
-        data = wf.readframes(chunk)
-        while data:
-            self.stream.write(data)
-            data = wf.readframes(chunk)
-        self.stream.stop_stream()
-        self.stream.close()
-    def playright_recording(self):
-        wf = wave.open("recordedright_audio.wav", "rb")
-        format = self.audio.get_format_from_width(wf.getsampwidth())
-        channels = wf.getnchannels()
-        rate = wf.getframerate()
-        chunk = 1024
-        self.stream = self.audio.open(format=format,
-                                      channels=channels,
-                                      rate=rate,
-                                      output=True,
-                                      frames_per_buffer=chunk)
-        data = wf.readframes(chunk)
-        while data:
-            self.stream.write(data)
-            data = wf.readframes(chunk)
-        self.stream.stop_stream()
-        self.stream.close()
-def start_recording():
-    recorder.start_recording()
-def stop_recording():
-    recorder.stop_recording()
-def play_recording():
-    recorder.play_recording()
-def playright_recording():
-    recorder.playright_recording()
-recorder = AudioRecorder()
-root = tk.Tk()
-root.title("Audio Recorder")
-root.geometry("1920x1080")
-root.configure(bg="#000")
-welcome_label = Label(root, text="\n \n \nWelcome!\n \n ", bg="#000", fg="white", font=("Arial", 32))
-welcome_label.pack()
+# Инициализация движка для преобразования текста в речь
+engine = pyttsx3.init()
 
-start_button = tk.Button(root, text="Start Recording", command=start_recording, bg="#585858", fg="white", font=("Arial", 32))
-start_button.pack()
-stop_button = tk.Button(root, text="Stop Recording", command=stop_recording, bg="#585858", fg="white", font=("Arial", 32))
-stop_button.pack()
-play_button = tk.Button(root, text="Play Recording", command=play_recording, bg="#585858", fg="white", font=("Arial", 32))
-playright_button = tk.Button(root, text="Play Right Recording", command=playright_recording, bg="#585858", fg="white", font=("Arial", 32))
-playright_button.pack()
-play_button.pack()
-root.mainloop()
+# Функция для преобразования текста в речь
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+
+# Функция для обработки нажатия кнопки "Далее"
+def next_sentence():
+    global current_sentence_index
+    current_sentence_index = (current_sentence_index + 1) % len(sentences)
+    label.config(text=sentences[current_sentence_index])
+    speak(sentences[current_sentence_index])
+
+# Функция для записи голоса
+def record_voice():
+    # Запись аудио
+    fs = 44100  # Частота дискретизации
+    seconds = 5  # Продолжительность записи (в секундах)
+    audio = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
+
+    # Ожидание окончания записи
+    sd.wait()
+
+    # Сохранение записанного аудио в файл
+    write("recorded_voice.wav", fs, audio)
+
+    messagebox.showinfo("Recording", "Recording finished.")
+
+# Функция для прослушивания аудиозаписи
+def play_audio():
+    playsound("recorded_voice.wav")
+# Создание главного окна
+window = tk.Tk()
+window.title("English Sentences")
+window.geometry("1920x1080")
+window.configure(bg="#000")
+# Текстовая метка для отображения предложений
+bb = Label(window, text="", bg="#000", fg="white", font=("Arial", 32))
+bb.pack()
+label = tk.Label(window, text=sentences[0], bg="#000", fg="white", font=("Arial", 48))
+label.pack(pady=20)
+cc = Label(window, text="", bg="#000", fg="white", font=("Arial", 32))
+cc.pack()
+# Кнопка "Далее"
+button_next = tk.Button(window, text="Next", command=next_sentence, bg="#585858", fg="white", font=("Arial", 32))
+button_next.pack(pady=10)
+
+# Кнопка "Записать голос"
+button_record = tk.Button(window, text="Record Voice", command=record_voice, bg="#585858", fg="white", font=("Arial", 32))
+button_record.pack(pady=10)
+
+# Кнопка "Прослушать запись"
+button_play = tk.Button(window, text="Play Audio", command=play_audio, bg="#585858", fg="white", font=("Arial", 32))
+button_play.pack(pady=10)
+
+# Индекс текущего предложения
+current_sentence_index = 0
+
+# Проигрывание первого предложения
+speak(sentences[current_sentence_index])
+
+# Запуск главного цикла окна
+window.mainloop()
