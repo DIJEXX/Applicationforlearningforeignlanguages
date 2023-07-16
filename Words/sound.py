@@ -50,7 +50,7 @@ def play_audio():
 # Создание главного окна
 window = tk.Tk()
 window.state('zoomed')
-window.title("Paralingva")
+window.title("Accelingvo")
 window.iconbitmap('Words/py.ico')
 window.geometry("1920x1080")
 window.configure(bg="#000")

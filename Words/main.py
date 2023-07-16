@@ -16,6 +16,7 @@ Config.set('graphics', 'height', 1080)
 Config.set('graphics', 'width', 1920)
 Config.write()
 
+
 class Popup_m():
     def popup_menu(
                     self,
@@ -218,7 +219,7 @@ class Container(BoxLayout, Popup_m, Func):
     button_next = ObjectProperty()
     button_check = ObjectProperty()
 class MyApp(App):
-    title = 'Words'
+    title = 'Accelingvo'
     def build(self):
         self.root = Container()
         return self.root
