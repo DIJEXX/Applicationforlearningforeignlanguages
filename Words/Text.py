@@ -24,6 +24,7 @@ currentSentence = ""
 currentTranslation = ""
 
 window = tk.Tk()
+window.state('zoomed')
 window.title("Paralingva")
 window.iconbitmap('Words/py.ico')
 window.geometry("1920x1080")

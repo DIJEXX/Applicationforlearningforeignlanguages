@@ -7,6 +7,7 @@ def close_gl_window():
     os.system("python main.py")
 
 gl_window = Tk()
+gl_window.state('zoomed')
 gl_window.title("Paralingva")
 gl_window.iconbitmap('Words/py.ico')
 gl_window.geometry("1920x1080")

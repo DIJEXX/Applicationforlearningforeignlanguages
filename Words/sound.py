@@ -49,6 +49,7 @@ def play_audio():
     playsound("recorded_voice.wav")
 # Создание главного окна
 window = tk.Tk()
+window.state('zoomed')
 window.title("Paralingva")
 window.iconbitmap('Words/py.ico')
 window.geometry("1920x1080")

@@ -36,6 +36,7 @@ def open_main_window():
     global main_window
     main_window = Toplevel(first_window)
     main_window.title("Paralingva")
+    main_window.state('zoomed')
     main_window.iconbitmap('Words/py.ico')
     main_window.geometry("1920x1080")
     main_window.configure(bg="#000")
@@ -71,6 +72,7 @@ def close_main_window():
 def close_gl_window():
     first_window.deiconify()
 first_window = Tk()
+first_window.state('zoomed')
 first_window.title("Paralingva")
 first_window.iconbitmap('Words/py.ico')
 first_window.geometry("1920x1080")
