@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fluentify</title>
+    <script src="eel.js"></script>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            color: #00000;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        .form-input {
+            display: block;
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .form-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #00000;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-button:hover {
+            background-color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Форма регистрации</h1>
+        <form>
+            <input class="form-input" type="text" placeholder="Имя" required>
+            <input class="form-input" type="email" placeholder="Email" required>
+            <input class="form-input" type="password" placeholder="Пароль" required>
+            <input class="form-input" type="password" placeholder="Повторите пароль" required>
+            <button class="form-button" type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+</body>
+</html>
