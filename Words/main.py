@@ -66,7 +66,7 @@ def open_main_window():
     difficulty_button.pack()
 
 def open_words_window():
-    os.system("python Words/main.py")
+    os.system("python Words/dictionary.py")
 def open_text_window():
     os.system("python Words/text.py")
 def open_sound_window():
