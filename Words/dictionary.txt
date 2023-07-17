@@ -1,5 +1,5 @@
 ﻿Collateral, pledge|Обеспечение, залог|False
-Change of internal procedures|Изменение внутренних процедур|True
+Change of internal procedures|Изменение внутренних процедур|False
 To submit a claim|Направить иск|False
 Claim|Иск, претензия|False
 Monitoring of payments; (out of schedule)|Контроль платежей; (вне графика)|False
