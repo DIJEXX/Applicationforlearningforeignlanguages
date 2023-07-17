@@ -1,20 +1,7 @@
 from tkinter import Tk, Label, Button, StringVar
-import sqlite3
 
 def change_difficulty(difficulty):
     selected_difficulty.set(difficulty)
-    # Здесь вы можете выполнить операции записи в базу данных
-    # Например, создать соединение с базой данных
-    conn = sqlite3.connect('venv/pymysql_application_database.db')
-    # Создать таблицу, если она не существует
-    conn.execute('''CREATE TABLE IF NOT EXISTS difficulties
-                    (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    difficulty TEXT)''')
-    # Выполнить операцию вставки, чтобы записать выбранную сложность
-    conn.execute('INSERT INTO difficulties (difficulty) VALUES (?)', (difficulty,))
-    # Сохранить изменения и закрыть соединение
-    conn.commit()
-    conn.close()
 
 gl_window = Tk()
 gl_window.state('zoomed')
