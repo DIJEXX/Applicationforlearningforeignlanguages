@@ -11,7 +11,7 @@ window.title("Acceligvo")
 window.geometry("1920x1080")
 
 # Открытие и масштабирование фонового изображения
-image = Image.open("background.jpg")  # Замените на путь к вашему фоновому изображению
+image = Image.open("Words/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((window.winfo_screenwidth(), window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
 

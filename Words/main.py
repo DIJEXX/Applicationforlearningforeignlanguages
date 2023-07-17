@@ -151,7 +151,7 @@ first_window.state('zoomed')
 first_window.title("Accelingvo")
 first_window.iconbitmap('Words/py.ico')
 first_window.geometry("1920x1080")
-image = Image.open("background.jpg")  # Замените на путь к вашему фоновому изображению
+image = Image.open("Words/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((first_window.winfo_screenwidth(), first_window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
 labell = Label()
