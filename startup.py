@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 
 def close_window():
     window.destroy()
-    os.system("python Words/main.py")
+    os.system("python Words/registration.py")
 
 window = Tk()
 window.title("Acceligvo")
