@@ -1,37 +1,76 @@
 import os
-import sqlite3
 from tkinter import Tk, Label, Entry, Button, Toplevel
+import pymysql
+from pymysql import Error
 
-conn = sqlite3.connect('venv/pymysql_application_database.db')
-cursor = conn.cursor()
-cursor.execute('''CREATE TABLE IF NOT EXISTS users
-                (id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                username TEXT NOT NULL,
-                email TEXT NOT NULL,
-                password TEXT NOT NULL)''')
 def login_user():
     username = login_username_entry.get()
-    password = login_password_entry.get()
+    passw = login_password_entry.get()
     try:
-        cursor.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
-        result = cursor.fetchone()
-        if result:
-            first_window.withdraw()
-            open_main_window()
-        else:
-            result_label.config(text="Invalid login credentials", fg="red")
-    except sqlite3.Error as error:
-        result_label.config(text="Error during login: " + str(error), fg="red")
+        connection = pymysql.connect(
+            host="93.81.253.61",
+            port=3306,
+            user="chelik",
+            password="1234",
+            database="sakila",
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        print("successfully connected...")
+        print("#" * 20)
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM teamdb  WHERE username=%s AND passw=%s"
+                cursor.execute(sql, (username, passw))
+                result = cursor.fetchone()
+                print(result)
+                if result:
+                    first_window.withdraw()
+                    open_main_window()
+                else:
+                    result_label.config(text="Неверные логин или пароль", fg="red")
+                print("select")
+        except Error as e:
+            print(e)
+        finally:
+            connection.close()
+    except Exception as ex:
+        print("Connection refused...")
+        print(ex)
 def register_user():
     username = register_username_entry.get().strip()
     email = register_email_entry.get().strip()
-    password = register_password_entry.get().strip()
+    passw = register_password_entry.get().strip()
     try:
-        cursor.execute("INSERT INTO users (username, email, password) VALUES (?, ?, ?)", (username, email, password))
-        conn.commit()
-        result_label.config(text="User registered successfully!", fg="green")
-    except sqlite3.Error as error:
-        result_label.config(text="Error registering user: " + str(error), fg="red")
+        connection = pymysql.connect(
+            host="93.81.253.61",
+            port=3306,
+            user="chelik",
+            password="1234",
+            database="sakila",
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        print("successfully connected...")
+        print("#" * 20)
+        try:
+            with connection.cursor() as cursor:
+                create_table_query = "CREATE TABLE IF NOT EXISTS `teamdb`(id int AUTO_INCREMENT," \
+                                     " username varchar(32)," \
+                                     " email varchar(32)," \
+                                     " passw varchar(32), PRIMARY KEY (id));"
+                cursor.execute(create_table_query)
+                insert_query = """INSERT INTO teamdb (username, email, passw) VALUES (%s, %s, %s)"""
+                vals = (username, email, passw)
+                cursor.execute(insert_query, vals)
+                result_label.config(text="Пользователь успешно зарегистрирован!", fg="green")
+                connection.commit()
+                print("Table created successfully")
+        except Error as e:
+            print(e)
+        finally:
+            connection.close()
+    except Exception as ex:
+        print("Connection refused...")
+        print(ex)
 def open_main_window():
     global main_window
     main_window = Toplevel(first_window)
@@ -44,10 +83,6 @@ def open_main_window():
     welcome_label.pack()
     log_out_button = Button(main_window, text="Выйти", command=close_main_window, bg="#585858", fg="white", font=("Arial", 32))
     log_out_button.pack()
-    # fff = Label(main_window, text="", bg="#000", fg="white", font=("Arial", 32))
-    # fff.pack()
-    # account_button = Button(main_window, text="Account", command=close_main_window, bg="#585858", fg="white", font=("Arial", 32))
-    # account_button.pack()
     gg = Label(main_window, text="", bg="#000", fg="white", font=("Arial", 32))
     gg.pack()
     words_button = Button(main_window, text="Словари", command=open_words_window, bg="#585858", fg="white", font=("Arial", 32))
@@ -64,7 +99,6 @@ def open_main_window():
     xx.pack()
     difficulty_button = Button(main_window, text="Сменить сложность", command=open_difficulty_window, bg="#585858", fg="white", font=("Arial", 32))
     difficulty_button.pack()
-
 def open_words_window():
     os.system("python Words/dictionary.py")
 def open_text_window():
@@ -121,4 +155,3 @@ login_button.pack()
 result_label = Label(first_window, text="", bg="#000", fg="white", font=("Arial", 32))
 result_label.pack()
 first_window.mainloop()
-conn.close()
