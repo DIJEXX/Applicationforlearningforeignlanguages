@@ -4,7 +4,7 @@ from tkinter import Tk, Label, Button
 
 def close_gl_window():
     gl_window.destroy()
-    os.system("python main.py")
+    os.system("python Words/main.py")
 
 gl_window = Tk()
 gl_window.state('zoomed')
