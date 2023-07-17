@@ -1,5 +1,5 @@
 import os
-from tkinter import Tk, Label, Entry, Button, Toplevel, PhotoImage
+from tkinter import Tk, Label, Button
 from PIL import Image, ImageTk
 
 def open_words_window():
@@ -11,8 +11,9 @@ def open_sound_window():
 def open_difficulty_window():
     os.system("python Words/difficulty.py")
 def close_main_window():
-    os.system("python Words/registration.py")
     main_window.destroy()
+    os.system("python Words/registration.py")
+
 
 
 main_window = Tk()
@@ -31,17 +32,17 @@ labell.place(relx=0, rely=0)
 welcome_label = Label(main_window, text="Главное меню", font=("Arial", 32))
 welcome_label.pack(pady=100)
 log_out_button = Button(main_window, text="Выйти", command=close_main_window, font=("Arial", 32))
-log_out_button.pack()
+log_out_button.pack(pady=10)
 
 words_button = Button(main_window, text="Словари", command=open_words_window, font=("Arial", 32))
-words_button.pack()
+words_button.pack(pady=10)
 
 text_button = Button(main_window, text="Предложения", command=open_text_window, font=("Arial", 32))
-text_button.pack()
+text_button.pack(pady=10)
 
 sound_button = Button(main_window, text="Произношение и аудирование", command=open_sound_window, font=("Arial", 32))
-sound_button.pack()
+sound_button.pack(pady=10)
 
 difficulty_button = Button(main_window, text="Сменить сложность", command=open_difficulty_window,font=("Arial", 32))
-difficulty_button.pack()
+difficulty_button.pack(pady=10)
 main_window.mainloop()

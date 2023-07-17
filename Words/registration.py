@@ -1,5 +1,5 @@
 import os
-from tkinter import Tk, Label, Entry, Button, Toplevel, PhotoImage
+from tkinter import Tk, Label, Entry, Button
 import pymysql
 from pymysql import Error
 from PIL import Image, ImageTk
@@ -25,8 +25,8 @@ def login_user():
                 result = cursor.fetchone()
                 print(result)
                 if result:
-                    open_main_window()
                     first_window.withdraw()
+                    open_main_window()
                 else:
                     result_label.config(text="Неверные логин или пароль", fg="red")
 
@@ -107,37 +107,36 @@ labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
 
-register_label = Label(first_window, text="Регистрация", font=("Arial", 32))
-register_label.pack()
-register_username_label = Label(first_window, text="Логин:", font=("Arial", 32))
+register_label = Label(first_window, text="Регистрация", font=("Roboto", 28))
+register_label.pack(pady=20)
+register_username_label = Label(first_window, text="Логин:", font=("Roboto", 20))
 register_username_label.pack()
-register_username_entry = Entry(first_window, font=("Arial", 32))
+register_username_entry = Entry(first_window, font=("Roboto", 20))
 register_username_entry.pack()
-register_email_label = Label(first_window, text="Почта:", font=("Arial", 32))
+register_email_label = Label(first_window, text="Почта:", font=("Roboto", 20))
 register_email_label.pack()
-register_email_entry = Entry(first_window, font=("Arial", 32))
+register_email_entry = Entry(first_window, font=("Roboto", 20))
 register_email_entry.pack()
-register_password_label = Label(first_window, text="Пароль:", font=("Arial", 32))
+register_password_label = Label(first_window, text="Пароль:", font=("Roboto", 20))
 register_password_label.pack()
-register_password_entry = Entry(first_window, show="*", font=("Arial", 32))
+register_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 register_password_entry.pack()
 
-register_button = Button(first_window, text="Зарегистрироваться", command=register_user, font=("Arial", 32))
-register_button.pack()
+register_button = Button(first_window, text="Зарегистрироваться", command=register_user, font=("Roboto", 28))
+register_button.pack(pady=20)
 
-login_label = Label(first_window, text="Вход", font=("Arial", 32))
-login_label.pack()
-login_username_label = Label(first_window, text="Логин:", font=("Arial", 32))
+login_label = Label(first_window, text="Вход", font=("Roboto", 20))
+login_label.pack(pady=20)
+login_username_label = Label(first_window, text="Логин:", font=("Roboto", 20))
 login_username_label.pack()
-login_username_entry = Entry(first_window, font=("Arial", 32))
+login_username_entry = Entry(first_window, font=("Roboto", 20))
 login_username_entry.pack()
-login_password_label = Label(first_window, text="Пароль:", font=("Arial", 32))
+login_password_label = Label(first_window, text="Пароль:", font=("Roboto", 20))
 login_password_label.pack()
-login_password_entry = Entry(first_window, show="*", font=("Arial", 32))
+login_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 login_password_entry.pack()
-
-login_button = Button(first_window, text="Войти", command=login_user, font=("Arial", 32))
-login_button.pack()
-result_label = Label(first_window, text="", font=("Arial", 32))
+login_button = Button(first_window, text="Войти", command=login_user, font=("Roboto", 28))
+login_button.pack(pady=20)
+result_label = Label(first_window, text="", font=("Arial", 24))
 result_label.pack()
 first_window.mainloop()

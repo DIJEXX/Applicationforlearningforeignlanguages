@@ -1,5 +1,5 @@
 from tkinter import Tk, Label, Button
-
+from PIL import Image, ImageTk
 def load_words():
     global words, learned_words
     learned_words = 0
@@ -103,35 +103,42 @@ window = Tk()
 window.state('zoomed')
 window.title("Accelingvo")
 window.geometry("1920x1080")
-window.configure(bg="#000")
+image = Image.open("Words/background.jpg")  # Замените на путь к вашему фоновому изображению
+image = image.resize((window.winfo_screenwidth(), window.winfo_screenheight()))
+background_image = ImageTk.PhotoImage(image)
+
+labell = Label()
+labell.pack()
+labell.configure(image=background_image)
+labell.place(relx=0, rely=0)
 
 load_words()
 
-label_word = Label(window, text="", bg="#000", fg="white", font=("Arial", 14), justify="left")
+label_word = Label(window, text="", font=("Arial", 14), justify="left")
 label_word.pack(pady=20)
 
-label_translation = Label(window, text="", bg="#000", fg="white", font=("Arial", 14), justify="left")
+label_translation = Label(window, text="", font=("Arial", 14), justify="left")
 label_translation.pack(pady=20)
 
-first_dictionary_button = Button(window, text="Первый словарь", bg="#585858", fg="white", font=("Arial", 32), command=on_first_dictionary_click)
-first_dictionary_button.pack()
+first_dictionary_button = Button(window, text="Первый словарь", font=("Arial", 32), command=on_first_dictionary_click)
+first_dictionary_button.pack(pady=10)
 
-next_one_button = Button(window, text="Следующее слово", bg="#585858", fg="white", font=("Arial", 32), command=on_next_one_click)
-next_one_button.pack()
+next_one_button = Button(window, text="Следующее слово", font=("Arial", 32), command=on_next_one_click)
+next_one_button.pack(pady=10)
 
-check_button = Button(window, text="Проверить слово", bg="#585858", fg="white", font=("Arial", 32), command=on_check_click)
-check_button.pack()
+check_button = Button(window, text="Проверить слово", font=("Arial", 32), command=on_check_click)
+check_button.pack(pady=10)
 
-done_button = Button(window, text="Выполнено", bg="#585858", fg="white", font=("Arial", 32), command=on_done_click)
-done_button.pack()
+done_button = Button(window, text="Выполнено", font=("Arial", 32), command=on_done_click)
+done_button.pack(pady=10)
 
-clear_statistics_button = Button(window, text="Очистить статистику", bg="#585858", fg="white", font=("Arial", 32), command=on_clear_statistics_click)
-clear_statistics_button.pack()
+clear_statistics_button = Button(window, text="Очистить статистику", font=("Arial", 32), command=on_clear_statistics_click)
+clear_statistics_button.pack(pady=10)
 
-save_button = Button(window, text="Сохранить словарь", bg="#585858", fg="white", font=("Arial", 32), command=on_save_click)
-save_button.pack()
+save_button = Button(window, text="Сохранить словарь", font=("Arial", 32), command=on_save_click)
+save_button.pack(pady=10)
 
-statistics_button = Button(window, text="Статистика", bg="#585858", fg="white", font=("Arial", 32), command=on_statistics_click)
-statistics_button.pack()
+statistics_button = Button(window, text="Статистика", font=("Arial", 32), command=on_statistics_click)
+statistics_button.pack(pady=10)
 
 window.mainloop()

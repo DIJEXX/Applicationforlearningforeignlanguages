@@ -4,6 +4,61 @@ import pyttsx3
 import sounddevice as sd
 from scipy.io.wavfile import write
 from playsound import playsound
+from PIL import Image, ImageTk
+
+
+sentences = [
+    "Hello, how are you?",
+    "What is your name?",
+    "Where are you from?",
+    "How old are you?",
+    "What do you like to do in your free time?"
+]
+engine = pyttsx3.init()
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+def next_sentence():
+    global current_sentence_index
+    current_sentence_index = (current_sentence_index + 1) % len(sentences)
+    label.config(text=sentences[current_sentence_index])
+    speak(sentences[current_sentence_index])
+def record_voice():
+    # Запись аудио
+    fs = 44100  # Частота дискретизации
+    seconds = 5  # Продолжительность записи (в секундах)
+    audio = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
+    sd.wait()
+    write("recorded_voice.wav", fs, audio)
+    messagebox.showinfo("Recording", "Recording finished.")
+def play_audio():
+    playsound("recorded_voice.wav")
+
+
+window = tk.Tk()
+window.state('zoomed')
+window.title("Accelingvo")
+window.iconbitmap('Words/py.ico')
+window.geometry("1920x1080")
+image = Image.open("Words/background.jpg")  # Замените на путь к вашему фоновому изображению
+image = image.resize((window.winfo_screenwidth(), window.winfo_screenheight()))
+background_image = ImageTk.PhotoImage(image)
+labell = Label()
+labell.pack()
+labell.configure(image=background_image)
+labell.place(relx=0, rely=0)
+label = tk.Label(window, text=sentences[0], font=("Arial", 48))
+label.pack(pady=100)
+button_next = tk.Button(window, text="Дальше", command=next_sentence, font=("Arial", 32))
+button_next.pack(pady=10)
+button_record = tk.Button(window, text="Записать голос", command=record_voice, font=("Arial", 32))
+button_record.pack(pady=10)
+button_play = tk.Button(window, text="Прослушать голос", command=play_audio, font=("Arial", 32))
+button_play.pack(pady=10)
+current_sentence_index = 0
+speak(sentences[current_sentence_index])
+window.mainloop()
+
 # from speechkit import Session, SpeechSynthesis, ShortAudioRecognition
 # import io
 # import wave
@@ -89,82 +144,3 @@ from playsound import playsound
 # text = recognizeShortAudio.recognize(
 #     data, format='lpcm', sampleRateHertz=sample_rate)
 # print(text)
-
-
-
-# Список предложений на английском языке
-sentences = [
-    "Hello, how are you?",
-    "What is your name?",
-    "Where are you from?",
-    "How old are you?",
-    "What do you like to do in your free time?"
-]
-
-# Инициализация движка для преобразования текста в речь
-engine = pyttsx3.init()
-
-# Функция для преобразования текста в речь
-def speak(text):
-    engine.say(text)
-    engine.runAndWait()
-
-# Функция для обработки нажатия кнопки "Далее"
-def next_sentence():
-    global current_sentence_index
-    current_sentence_index = (current_sentence_index + 1) % len(sentences)
-    label.config(text=sentences[current_sentence_index])
-    speak(sentences[current_sentence_index])
-
-# Функция для записи голоса
-def record_voice():
-    # Запись аудио
-    fs = 44100  # Частота дискретизации
-    seconds = 5  # Продолжительность записи (в секундах)
-    audio = sd.rec(int(seconds * fs), samplerate=fs, channels=1)
-
-    # Ожидание окончания записи
-    sd.wait()
-
-    # Сохранение записанного аудио в файл
-    write("recorded_voice.wav", fs, audio)
-
-    messagebox.showinfo("Recording", "Recording finished.")
-
-# Функция для прослушивания аудиозаписи
-def play_audio():
-    playsound("recorded_voice.wav")
-# Создание главного окна
-window = tk.Tk()
-window.state('zoomed')
-window.title("Accelingvo")
-window.iconbitmap('Words/py.ico')
-window.geometry("1920x1080")
-window.configure(bg="#000")
-# Текстовая метка для отображения предложений
-bb = Label(window, text="\n", bg="#000", fg="white", font=("Arial", 32))
-bb.pack()
-label = tk.Label(window, text=sentences[0], bg="#000", fg="white", font=("Arial", 48))
-label.pack(pady=20)
-cc = Label(window, text="", bg="#000", fg="white", font=("Arial", 32))
-cc.pack()
-# Кнопка "Далее"
-button_next = tk.Button(window, text="Дальше", command=next_sentence, bg="#585858", fg="white", font=("Arial", 32))
-button_next.pack(pady=10)
-
-# Кнопка "Записать голос"
-button_record = tk.Button(window, text="Записать голос", command=record_voice, bg="#585858", fg="white", font=("Arial", 32))
-button_record.pack(pady=10)
-
-# Кнопка "Прослушать запись"
-button_play = tk.Button(window, text="Прослушать голос", command=play_audio, bg="#585858", fg="white", font=("Arial", 32))
-button_play.pack(pady=10)
-
-# Индекс текущего предложения
-current_sentence_index = 0
-
-# Проигрывание первого предложения
-speak(sentences[current_sentence_index])
-
-# Запуск главного цикла окна
-window.mainloop()
