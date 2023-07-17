@@ -4,6 +4,7 @@ import pymysql
 from pymysql import Error
 from PIL import Image, ImageTk
 
+
 def login_user():
     username = login_username_entry.get()
     passw = login_password_entry.get()
@@ -29,9 +30,7 @@ def login_user():
                     open_main_window()
                 else:
                     result_label.config(text="Неверные логин или пароль", fg="red")
-
                 print("select")
-
         except Error as e:
             print(e)
         finally:
@@ -39,13 +38,13 @@ def login_user():
     except Exception as ex:
         print("Connection refused...")
         print(ex)
+
+
 def register_user():
     username = register_username_entry.get().strip()
     email = register_email_entry.get().strip()
     passw = register_password_entry.get().strip()
-
     try:
-
         connection = pymysql.connect(
             host="93.81.253.61",
             port=3306,
@@ -77,22 +76,34 @@ def register_user():
         print("Connection refused...")
         print(ex)
 
+
 def open_words_window():
     os.system("python Words/dictionary.py")
+
+
 def open_text_window():
     os.system("python Words/text.py")
+
+
 def open_sound_window():
     os.system("python Words/sound.py")
+
+
 def open_difficulty_window():
     os.system("python Words/difficulty.py")
+
+
 def close_main_window():
     first_window.deiconify()
+
 
 def close_gl_window():
     first_window.deiconify()
 
+
 def open_main_window():
     os.system("python Words/main.py")
+
 
 first_window = Tk()
 first_window.state('zoomed')
@@ -106,7 +117,6 @@ labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
-
 register_label = Label(first_window, text="Регистрация", font=("Roboto", 28))
 register_label.pack(pady=20)
 register_username_label = Label(first_window, text="Логин:", font=("Roboto", 20))
@@ -121,10 +131,8 @@ register_password_label = Label(first_window, text="Пароль:", font=("Robot
 register_password_label.pack()
 register_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 register_password_entry.pack()
-
 register_button = Button(first_window, text="Зарегистрироваться", command=register_user, font=("Roboto", 28))
 register_button.pack(pady=20)
-
 login_label = Label(first_window, text="Вход", font=("Roboto", 20))
 login_label.pack(pady=20)
 login_username_label = Label(first_window, text="Логин:", font=("Roboto", 20))
@@ -137,6 +145,6 @@ login_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 login_password_entry.pack()
 login_button = Button(first_window, text="Войти", command=login_user, font=("Roboto", 28))
 login_button.pack(pady=20)
-result_label = Label(first_window, text="", font=("Arial", 24))
+result_label = Label(first_window, text="", font=("Roboto", 24))
 result_label.pack()
 first_window.mainloop()

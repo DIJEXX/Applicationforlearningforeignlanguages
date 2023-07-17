@@ -15,14 +15,20 @@ sentences = [
     "What do you like to do in your free time?"
 ]
 engine = pyttsx3.init()
+
+
 def speak(text):
     engine.say(text)
     engine.runAndWait()
+
+
 def next_sentence():
     global current_sentence_index
     current_sentence_index = (current_sentence_index + 1) % len(sentences)
     label.config(text=sentences[current_sentence_index])
     speak(sentences[current_sentence_index])
+
+
 def record_voice():
     # Запись аудио
     fs = 44100  # Частота дискретизации
@@ -31,6 +37,8 @@ def record_voice():
     sd.wait()
     write("recorded_voice.wav", fs, audio)
     messagebox.showinfo("Recording", "Recording finished.")
+
+
 def play_audio():
     playsound("recorded_voice.wav")
 
@@ -47,13 +55,13 @@ labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
-label = tk.Label(window, text=sentences[0], font=("Arial", 48))
+label = tk.Label(window, text=sentences[0], font=("Roboto", 48))
 label.pack(pady=100)
-button_next = tk.Button(window, text="Дальше", command=next_sentence, font=("Arial", 32))
+button_next = tk.Button(window, text="Дальше", command=next_sentence, font=("Roboto", 32))
 button_next.pack(pady=10)
-button_record = tk.Button(window, text="Записать голос", command=record_voice, font=("Arial", 32))
+button_record = tk.Button(window, text="Записать голос", command=record_voice, font=("Roboto", 32))
 button_record.pack(pady=10)
-button_play = tk.Button(window, text="Прослушать голос", command=play_audio, font=("Arial", 32))
+button_play = tk.Button(window, text="Прослушать голос", command=play_audio, font=("Roboto", 32))
 button_play.pack(pady=10)
 current_sentence_index = 0
 speak(sentences[current_sentence_index])
