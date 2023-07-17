@@ -25,8 +25,8 @@ def login_user():
                 result = cursor.fetchone()
                 print(result)
                 if result:
-                    first_window.withdraw()
                     open_main_window()
+                    first_window.withdraw()
                 else:
                     result_label.config(text="Неверные логин или пароль", fg="red")
 
