@@ -1,7 +1,7 @@
 import os
-from tkinter import Tk, Label, Button
+from tkinter import *
+from tkinter import ttk
 from PIL import Image, ImageTk
-
 
 def open_words_window():
     main_window.destroy()

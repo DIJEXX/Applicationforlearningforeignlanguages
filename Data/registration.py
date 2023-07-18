@@ -1,9 +1,9 @@
-import os
-from tkinter import Tk, Label, Entry, Button
+from tkinter import ttk
 import pymysql
 from pymysql import Error
+import os
+from tkinter import *
 from PIL import Image, ImageTk
-
 
 def login_user():
     username = login_username_entry.get()
@@ -126,43 +126,44 @@ first_window.geometry("1920x1080")
 image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((first_window.winfo_screenwidth(), first_window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
+
 style = ttk.Style()
-style.configure("BW.TLabel", font=("Times New Roman", 32), foreground="#183b66", padding=8, background="#8fc6da")
-style.configure("BW.TButton", font=("Times New Roman", 32, "bold"), foreground="#183b66", padding=12, background="#8fc6da")
+style.configure("BW.TLabel", font=("Times New Roman", 20), foreground="#183b66", padding=8, background="#8fc6da")
+style.configure("BW.TButton", font=("Times New Roman", 24, "bold"), foreground="#183b66", padding=12, background="#8fc6da")
 labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
-register_label = Label(first_window, text="Регистрация", font=("Roboto", 28))
+register_label = ttk.Label(first_window, text="Регистрация", style="BW.TLabel")
 register_label.pack(pady=20)
-register_username_label = Label(first_window, text="Логин:", font=("Roboto", 20))
+register_username_label = ttk.Label(first_window, text="Логин:", style="BW.TLabel")
 register_username_label.pack()
 register_username_entry = Entry(first_window, font=("Roboto", 20))
 register_username_entry.pack()
-register_email_label = Label(first_window, text="Почта:", font=("Roboto", 20))
+register_email_label = ttk.Label(first_window, text="Почта:", style="BW.TLabel")
 register_email_label.pack()
 register_email_entry = Entry(first_window, font=("Roboto", 20))
 register_email_entry.pack()
-register_password_label = Label(first_window, text="Пароль:", font=("Roboto", 20))
+register_password_label = ttk.Label(first_window, text="Пароль:", style="BW.TLabel")
 register_password_label.pack()
 register_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 register_password_entry.pack()
-register_button = Button(first_window, text="Зарегистрироваться", command=register_user, font=("Roboto", 28))
+register_button = ttk.Button(first_window, text="Зарегистрироваться", command=register_user, style="BW.TButton")
 register_button.pack(pady=20)
-login_label = Label(first_window, text="Вход", font=("Roboto", 20))
+login_label = ttk.Label(first_window, text="Вход", style="BW.TLabel")
 login_label.pack(pady=20)
-login_username_label = Label(first_window, text="Логин:", font=("Roboto", 20))
+login_username_label = ttk.Label(first_window, text="Логин:", style="BW.TLabel")
 login_username_label.pack()
 login_username_entry = Entry(first_window, font=("Roboto", 20))
 login_username_entry.pack()
-login_password_label = Label(first_window, text="Пароль:", font=("Roboto", 20))
+login_password_label = ttk.Label(first_window, text="Пароль:", style="BW.TLabel")
 login_password_label.pack()
 login_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 login_password_entry.pack()
-login_button = Button(first_window, text="Войти", command=login_user, font=("Roboto", 28))
+login_button = ttk.Button(first_window, text="Войти", command=login_user, style="BW.TButton")
 login_button.pack(pady=20)
-result_label = Label(first_window, text="", font=("Roboto", 24))
+result_label = ttk.Label(first_window, text="", style="BW.TLabel")
 result_label.pack()
-back_button = Button(first_window, text="←", font=("Roboto", 32), command=close_window)
+back_button = ttk.Button(first_window, text="←", style="BW.TButton", command=close_window)
 back_button.pack(pady=10)
 first_window.mainloop()

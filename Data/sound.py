@@ -1,11 +1,13 @@
 import tkinter as tk
-from tkinter import messagebox, Label, Tk, Button
+from tkinter import messagebox
 import pyttsx3
 import sounddevice as sd
 from scipy.io.wavfile import write
 from playsound import playsound
-from PIL import Image, ImageTk
 import os
+from tkinter import *
+from tkinter import ttk
+from PIL import Image, ImageTk
 
 
 def close_window():

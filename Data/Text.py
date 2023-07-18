@@ -1,9 +1,9 @@
 import tkinter as tk
 import random
 import os
+from tkinter import *
+from tkinter import ttk
 from PIL import Image, ImageTk
-from tkinter import Tk, Label, Button
-
 
 def close_window():
     window.destroy()
@@ -75,16 +75,16 @@ random.seed()
 currentSentenceIndex = random.randint(0, len(sentences) - 1)
 currentSentence = sentences[currentSentenceIndex]
 currentTranslation = translations[currentSentenceIndex]
-sentence_label = tk.Label(window, text=currentSentence, font=("Roboto", 32))
+sentence_label = Label(window, text=currentSentence, style="BW.TLabel")
 sentence_label.pack(pady=100)
-translation_entry = tk.Entry(window, fg="#000", font=("Roboto", 32))
+translation_entry = tk.Entry(window, fg="#000", style="BW.TLabel")
 translation_entry.pack()
-check_button = tk.Button(window, text="Проверить", command=checkTranslation, font=("Roboto", 32))
+check_button = Button(window, text="Проверить", command=checkTranslation, style="BW.TButton")
 check_button.pack(pady=50)
-result_label = tk.Label(window, text="", font=("Roboto", 32))
+result_label = Label(window, text="", style="BW.TLabel")
 result_label.pack()
-next_button = tk.Button(window, text="Следующее предложение", command=getNextSentence, font=("Roboto", 32))
+next_button = Button(window, text="Следующее предложение", command=getNextSentence, style="BW.TButton")
 next_button.pack(pady=50)
-back_button = Button(window, text="←", font=("Roboto", 32), command=close_window)
+back_button = Button(window, text="←", command=close_window, style="BW.TButton")
 back_button.pack(pady=10)
 window.mainloop()

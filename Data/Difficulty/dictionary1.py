@@ -1,6 +1,7 @@
-from tkinter import Tk, Label, Button
-from PIL import Image, ImageTk
 import os
+from tkinter import *
+from tkinter import ttk
+from PIL import Image, ImageTk
 
 
 def close_window():
@@ -128,29 +129,33 @@ window.geometry("1920x1080")
 image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((window.winfo_screenwidth(), window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
+style = ttk.Style()
+style.configure("BW.TLabel", font=("Times New Roman", 32), foreground="#183b66", padding=8, background="#8fc6da")
+style.configure("BW.TButton", font=("Times New Roman", 32, "bold"), foreground="#183b66", padding=12, background="#8fc6da")
+
 labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
 load_words()
-label_word = Label(window, text="", font=("Roboto", 14), justify="left")
+label_word = ttk.Label(window, text="", justify="left", style="BW.TLabel")
 label_word.pack(pady=20)
-label_translation = Label(window, text="", font=("Roboto", 14), justify="left")
+label_translation = ttk.Label(window, text="", justify="left", style="BW.TLabel")
 label_translation.pack(pady=20)
-first_dictionary_button = Button(window, text="Первый словарь", font=("Roboto", 32), command=on_first_dictionary_click)
+first_dictionary_button = ttk.Button(window, text="Первый словарь", command=on_first_dictionary_click, style="BW.TButton")
 first_dictionary_button.pack(pady=10)
-next_one_button = Button(window, text="Следующее слово", font=("Roboto", 32), command=on_next_one_click)
+next_one_button = ttk.Button(window, text="Следующее слово", command=on_next_one_click, style="BW.TButton")
 next_one_button.pack(pady=10)
-check_button = Button(window, text="Проверить слово", font=("Roboto", 32), command=on_check_click)
+check_button = ttk.Button(window, text="Проверить слово", command=on_check_click, style="BW.TButton")
 check_button.pack(pady=10)
-done_button = Button(window, text="Выполнено", font=("Roboto", 32), command=on_done_click)
+done_button = ttk.Button(window, text="Выполнено", command=on_done_click, style="BW.TButton")
 done_button.pack(pady=10)
-clear_statistics_button = Button(window, text="Очистить статистику", font=("Roboto", 32), command=on_clear_statistics_click)
+clear_statistics_button = ttk.Button(window, text="Очистить статистику", command=on_clear_statistics_click, style="BW.TButton")
 clear_statistics_button.pack(pady=10)
-save_button = Button(window, text="Сохранить словарь", font=("Roboto", 32), command=on_save_click)
+save_button = ttk.Button(window, text="Сохранить словарь", command=on_save_click, style="BW.TButton")
 save_button.pack(pady=10)
-statistics_button = Button(window, text="Статистика", font=("Roboto", 32), command=on_statistics_click)
+statistics_button = ttk.Button(window, text="Статистика", command=on_statistics_click, style="BW.TButton")
 statistics_button.pack(pady=10)
-back_button = Button(window, text="←", font=("Roboto", 32), command=close_window)
+back_button = ttk.Button(window, text="←", command=close_window, style="BW.TButton")
 back_button.pack(pady=10)
 window.mainloop()
