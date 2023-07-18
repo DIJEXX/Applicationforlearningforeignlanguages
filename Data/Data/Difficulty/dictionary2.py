@@ -1,6 +1,7 @@
-from tkinter import Tk, Label, Button
-from PIL import Image, ImageTk
 import os
+from tkinter import *
+from tkinter import ttk
+from PIL import Image, ImageTk
 
 
 def close_window():
@@ -11,7 +12,7 @@ def close_window():
 def load_words():
     global words, learned_words
     learned_words = 0
-    with open("Data/Difficulty/dictionary2.txt", "r", encoding="utf-8") as file:
+    with open("Data/Difficulty/dictionary1.txt", "r", encoding="utf-8") as file:
         lines = file.readlines()
         for line in lines:
             word, translation, learned = line.strip().split("|")
@@ -22,7 +23,7 @@ def load_words():
 
 def save_words():
     global words
-    with open("Data/Difficulty/dictionary2.txt", "w", encoding="utf-8") as file:
+    with open("Data/Difficulty/dictionary1.txt", "w", encoding="utf-8") as file:
         for word, translation, learned in words:
             file.write(f"{word}|{translation}|{str(learned)}\n")
 
@@ -52,9 +53,9 @@ def show_word():
     global current_word_index, words
     if current_word_index < len(words):
         word, translation, learned = words[current_word_index]
-        update_label(f"Word: {word}", "")
+        update_label(f"Слово: {word}", "")
     else:
-        update_label("No more words", "")
+        update_label("Слова закончились", "")
 
 
 def on_first_dictionary_click():
@@ -79,9 +80,9 @@ def on_check_click():
     global current_word_index, words
     if current_word_index < len(words):
         word, translation, learned = words[current_word_index]
-        update_label(f"Word: {word}", f"Translation: {translation}")
+        update_label(f"Слово: {word}", f"Перевод: {translation}")
     else:
-        update_label("No more words", "")
+        update_label("Слова закончились", "")
 
 
 def on_done_click():
@@ -91,12 +92,12 @@ def on_done_click():
         if not learned:
             words[current_word_index] = (word, translation, not learned)
             learned_words += 1
-            update_label("Word marked as learned.", "")
+            update_label("Слово выучено.", "")
             next_word_index = get_next_word_index()
             if next_word_index != -1:
                 current_word_index = next_word_index
     else:
-        update_label("No more words", "")
+        update_label("Слова закончились", "")
 
 
 def on_clear_statistics_click():
@@ -106,18 +107,18 @@ def on_clear_statistics_click():
         word, translation, learned = words[i]
         if learned:
             words[i] = (word, translation, not learned)
-    update_label("Statistics cleared.", "")
+    update_label("Прогресс очищен.", "")
 
 
 def on_save_click():
 
     save_words()
-    update_label("Dictionary saved.", "")
+    update_label("Прогресс сохранён.", "")
 
 
 def on_statistics_click():
     global learned_words
-    text = f"Learned words: {learned_words}"
+    text = f"Выученные слова: {learned_words}"
     update_label(text, "")
 
 
@@ -128,29 +129,33 @@ window.geometry("1920x1080")
 image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((window.winfo_screenwidth(), window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
+style = ttk.Style()
+style.configure("BW.TLabel", font=("Times New Roman", 32), foreground="#183b66", padding=8, background="#8fc6da")
+style.configure("BW.TButton", font=("Times New Roman", 32, "bold"), foreground="#183b66", padding=12, background="#8fc6da")
+
 labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
 load_words()
-label_word = Label(window, text="", font=("Roboto", 14), justify="left")
+label_word = ttk.Label(window, text="", justify="left", style="BW.TLabel")
 label_word.pack(pady=20)
-label_translation = Label(window, text="", font=("Roboto", 14), justify="left")
+label_translation = ttk.Label(window, text="", justify="left", style="BW.TLabel")
 label_translation.pack(pady=20)
-first_dictionary_button = Button(window, text="Easy dictionary", font=("Roboto", 32), command=on_first_dictionary_click)
+first_dictionary_button = ttk.Button(window, text="Первый словарь", command=on_first_dictionary_click, style="BW.TButton")
 first_dictionary_button.pack(pady=10)
-next_one_button = Button(window, text="Next word", font=("Roboto", 32), command=on_next_one_click)
+next_one_button = ttk.Button(window, text="Следующее слово", command=on_next_one_click, style="BW.TButton")
 next_one_button.pack(pady=10)
-check_button = Button(window, text="Check word", font=("Roboto", 32), command=on_check_click)
+check_button = ttk.Button(window, text="Проверить слово", command=on_check_click, style="BW.TButton")
 check_button.pack(pady=10)
-done_button = Button(window, text="Completed word", font=("Roboto", 32), command=on_done_click)
+done_button = ttk.Button(window, text="Выполнено", command=on_done_click, style="BW.TButton")
 done_button.pack(pady=10)
-clear_statistics_button = Button(window, text="Clear progress", font=("Roboto", 32), command=on_clear_statistics_click)
+clear_statistics_button = ttk.Button(window, text="Очистить статистику", command=on_clear_statistics_click, style="BW.TButton")
 clear_statistics_button.pack(pady=10)
-save_button = Button(window, text="Save progress", font=("Roboto", 32), command=on_save_click)
+save_button = ttk.Button(window, text="Сохранить словарь", command=on_save_click, style="BW.TButton")
 save_button.pack(pady=10)
-statistics_button = Button(window, text="Show progress", font=("Roboto", 32), command=on_statistics_click)
+statistics_button = ttk.Button(window, text="Статистика", command=on_statistics_click, style="BW.TButton")
 statistics_button.pack(pady=10)
-back_button = Button(window, text="←", font=("Roboto", 32), command=close_window)
+back_button = ttk.Button(window, text="←", command=close_window, style="BW.TButton")
 back_button.pack(pady=10)
 window.mainloop()

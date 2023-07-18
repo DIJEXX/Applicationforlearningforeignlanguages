@@ -1,9 +1,9 @@
-import os
-from tkinter import Tk, Label, Entry, Button
+from tkinter import ttk
 import pymysql
 from pymysql import Error
+import os
+from tkinter import *
 from PIL import Image, ImageTk
-
 
 def login_user():
     username = login_username_entry.get()
@@ -21,15 +21,19 @@ def login_user():
         print("#" * 20)
         try:
             with connection.cursor() as cursor:
-                sql = "SELECT * FROM teamdb  WHERE username=%s AND passw=%s"
+                sql = "SELECT * FROM qwerty  WHERE username=%s AND passw=%s"
                 cursor.execute(sql, (username, passw))
                 result = cursor.fetchone()
+                a = str(result)
                 print(result)
                 if result:
-                    first_window.withdraw()
-                    open_main_window()
+                    if "''" in a:
+                        result_label.config(text="Неверные логин или пароль", fg="red")
+                    else:
+                        first_window.withdraw()
+                        open_main_window()
                 else:
-                    result_label.config(text="Invalid login or password", fg="red")
+                    result_label.config(text="Неверные логин или пароль", fg="red")
                 print("select")
         except Error as e:
             print(e)
@@ -57,17 +61,23 @@ def register_user():
         print("#" * 20)
         try:
             with connection.cursor() as cursor:
-                create_table_query = "CREATE TABLE IF NOT EXISTS `teamdb`(id int AUTO_INCREMENT," \
+                create_table_query = "CREATE TABLE IF NOT EXISTS `qwerty`(id int AUTO_INCREMENT," \
                                      " username varchar(32)," \
                                      " email varchar(32)," \
                                      " passw varchar(32), PRIMARY KEY (id));"
                 cursor.execute(create_table_query)
-                insert_query = """INSERT INTO teamdb (username, email, passw) VALUES (%s, %s, %s)"""
-                vals = (username, email, passw)
-                cursor.execute(insert_query, vals)
-                result_label.config(text="User successfully registered!", fg="green")
-                connection.commit()
-                print("Table created successfully")
+                u1 = str(username)
+                e1 = str(email)
+                p1 = str(passw)
+                if u1 == '' or e1 == '' or p1 == '' or len(u1) < 4 or e1.find('@') == -1 or e1.find('.') == -1:
+                    result_label.config(text="Ошибка регистрации", fg="red")
+                else:
+                    insert_query = """INSERT INTO qwerty (username, email, passw) VALUES (%s, %s, %s)"""
+                    vals = (username, email, passw)
+                    cursor.execute(insert_query, vals)
+                    result_label.config(text="Пользователь успешно зарегистрирован!", fg="green")
+                    connection.commit()
+                    print("Table created successfully")
         except Error as e:
             print(e)
         finally:
@@ -78,19 +88,19 @@ def register_user():
 
 
 def open_words_window():
-    os.system("python Data/Data/dictionary.py")
+    os.system("python Data/dictionary.py")
 
 
 def open_text_window():
-    os.system("python Data/Data/text.py")
+    os.system("python Data/text.py")
 
 
 def open_sound_window():
-    os.system("python Data/Data/sound.py")
+    os.system("python Data/sound.py")
 
 
 def open_difficulty_window():
-    os.system("Data/Data/difficulty.py")
+    os.system("Data/difficulty.py")
 
 
 def close_main_window():
@@ -102,7 +112,7 @@ def close_gl_window():
 
 
 def open_main_window():
-    os.system("python Data/Data/main.py")
+    os.system("python Data/main.py")
 
 def close_window():
     first_window.destroy()
@@ -116,40 +126,44 @@ first_window.geometry("1920x1080")
 image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((first_window.winfo_screenwidth(), first_window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
+
+style = ttk.Style()
+style.configure("BW.TLabel", font=("Times New Roman", 20), foreground="#183b66", padding=8, background="#8fc6da")
+style.configure("BW.TButton", font=("Times New Roman", 24, "bold"), foreground="#183b66", padding=12, background="#8fc6da")
 labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
-register_label = Label(first_window, text="Sign up", font=("Roboto", 28))
+register_label = ttk.Label(first_window, text="Регистрация", style="BW.TLabel")
 register_label.pack(pady=20)
-register_username_label = Label(first_window, text="Username:", font=("Roboto", 20))
+register_username_label = ttk.Label(first_window, text="Логин:", style="BW.TLabel")
 register_username_label.pack()
 register_username_entry = Entry(first_window, font=("Roboto", 20))
 register_username_entry.pack()
-register_email_label = Label(first_window, text="Email:", font=("Roboto", 20))
+register_email_label = ttk.Label(first_window, text="Почта:", style="BW.TLabel")
 register_email_label.pack()
 register_email_entry = Entry(first_window, font=("Roboto", 20))
 register_email_entry.pack()
-register_password_label = Label(first_window, text="Password:", font=("Roboto", 20))
+register_password_label = ttk.Label(first_window, text="Пароль:", style="BW.TLabel")
 register_password_label.pack()
 register_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 register_password_entry.pack()
-register_button = Button(first_window, text="Create account", command=register_user, font=("Roboto", 28))
+register_button = ttk.Button(first_window, text="Зарегистрироваться", command=register_user, style="BW.TButton")
 register_button.pack(pady=20)
-login_label = Label(first_window, text="Log in", font=("Roboto", 20))
+login_label = ttk.Label(first_window, text="Вход", style="BW.TLabel")
 login_label.pack(pady=20)
-login_username_label = Label(first_window, text="Login:", font=("Roboto", 20))
+login_username_label = ttk.Label(first_window, text="Логин:", style="BW.TLabel")
 login_username_label.pack()
 login_username_entry = Entry(first_window, font=("Roboto", 20))
 login_username_entry.pack()
-login_password_label = Label(first_window, text="Password:", font=("Roboto", 20))
+login_password_label = ttk.Label(first_window, text="Пароль:", style="BW.TLabel")
 login_password_label.pack()
 login_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 login_password_entry.pack()
-login_button = Button(first_window, text="Continue", command=login_user, font=("Roboto", 28))
+login_button = ttk.Button(first_window, text="Войти", command=login_user, style="BW.TButton")
 login_button.pack(pady=20)
-result_label = Label(first_window, text="", font=("Roboto", 24))
+result_label = Label(first_window, text="", font=("Roboto", 32))
 result_label.pack()
-back_button = Button(first_window, text="←", font=("Roboto", 32), command=close_window)
+back_button = ttk.Button(first_window, text="←", style="BW.TButton", command=close_window)
 back_button.pack(pady=10)
 first_window.mainloop()

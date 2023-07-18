@@ -1,21 +1,30 @@
-﻿Collateral, pledge|Обеспечение, залог|False
-Change of internal procedures|Изменение внутренних процедур|False
-To submit a claim|Направить иск|False
-Claim|Иск, претензия|False
-Monitoring of payments; (out of schedule)|Контроль платежей; (вне графика)|False
-Insurance payment|Выплата СК|False
-Inheritance rights; to join the right of inheritance|Права наследования; вступать в наследство|False
-Write off the balance sheet|Списать с баланса|False
-Cancel, abolish, repeal|Отменять, аннулировать|False
-Cancellation, abolition, repeal|Отмена, аннулирование|False
-On the contrary|Наоборот|False
-Treasury|Казначейство, казна|False
-So called|Так называемый|False
-Swings; mood swings|Качели, перепады настроения|False
-Early, preschedule|Досрочный|False
-Additionally, besides|Кроме того|False
-Moreover|Более того|False
-Especially|Особенно|False
-Boring|Скучный|False
-Hand, arm|Рука|False
-Back|Спина|False
+Кошка|Cat|False
+Собака|Dog|False
+Книга|Book|False
+Стол|Table|False
+Стул|Chair|False
+Солнце|Sun|False
+Луна|Moon|False
+Дерево|Tree|False
+Дом|House|False
+Машина|Car|False
+Мяч|Ball|False
+Озеро|Lake|False
+Река|River|False
+Цветок|Flower|False
+Птица|Bird|False
+Рыба|Fish|False
+Часы|Clock|False
+Шляпа|Hat|False
+Рубашка|Shirt|False
+Штаны|Pants|False
+Обувь|Shoes|False
+Кровать|Bed|False
+Кресло|Chair|False
+Дверь|Door|False
+Окно|Window|False
+Ручка|Pen|False
+Карандаш|Pencil|False
+Телефон|Phone|False
+Скатерть|Tablecloth|False
+Тарелка|Plate|False

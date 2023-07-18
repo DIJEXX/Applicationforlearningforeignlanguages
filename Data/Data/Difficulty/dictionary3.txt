@@ -1,21 +1,30 @@
-﻿Collateral, pledge|Обеспечение, залог|False
-Change of internal procedures|Изменение внутренних процедур|False
-To submit a claim|Направить иск|False
-Claim|Иск, претензия|False
-Monitoring of payments; (out of schedule)|Контроль платежей; (вне графика)|False
-Insurance payment|Выплата СК|False
-Inheritance rights; to join the right of inheritance|Права наследования; вступать в наследство|False
-Write off the balance sheet|Списать с баланса|False
-Cancel, abolish, repeal|Отменять, аннулировать|False
-Cancellation, abolition, repeal|Отмена, аннулирование|False
-On the contrary|Наоборот|False
-Treasury|Казначейство, казна|False
-So called|Так называемый|False
-Swings; mood swings|Качели, перепады настроения|False
-Early, preschedule|Досрочный|False
-Additionally, besides|Кроме того|False
-Moreover|Более того|False
-Especially|Особенно|False
-Boring|Скучный|False
-Hand, arm|Рука|False
-Back|Спина|False
+Добросовестность|Conscientiousness|False
+Сложный, утонченный|Sophisticated|False
+Предпринимательство|Entrepreneurship|False
+Обострять|Exacerbate|False
+Недоверчивый|Incredulous|False
+Сбивать с толку|Discombobulate|False
+Непреклонный|Intransigent|False
+Упорство|Perseverance|False
+Неотменяемый|Irrevocable|False
+Счастливое стечение обстоятельств|Serendipity|False
+Псевдоним|Pseudonym|False
+Великодушный|Magnanimous|False
+Жалобный|Querulous|False
+Прокрастинация|Procrastination|False
+Буйный|Rambunctious|False
+Неосновательный|Inconsequential|False
+Бесспорный|Indubitable|False
+Неописуемый|Ineffable|False
+Мелодичный|Mellifluous|False
+Эзотерический|Esoteric|False
+Двоякий|Ambivalent|False
+Громоздкий|Ponderous|False
+Вероятность, правдоподобие|Verisimilitude|False
+Неразрывный|Inextricable|False
+Упрямый|Recalcitrant|False
+Равновесие, спокойствие|Equanimity|False
+Беспритязательный|Unpretentious|False
+Непоколебимый|Imperturbable|False
+Несказанный|Ineffable|False
+Сопротивляющийся|Obstreperous|False

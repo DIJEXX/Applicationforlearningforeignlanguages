@@ -1,16 +1,18 @@
 import tkinter as tk
-from tkinter import messagebox, Label, Tk, Button
+from tkinter import messagebox
 import pyttsx3
 import sounddevice as sd
 from scipy.io.wavfile import write
 from playsound import playsound
-from PIL import Image, ImageTk
 import os
+from tkinter import *
+from tkinter import ttk
+from PIL import Image, ImageTk
 
 
 def close_window():
     window.destroy()
-    os.system("python Data/Data/main.py")
+    os.system("python Data/main.py")
 
 tts = pyttsx3.init()
 tts.setProperty('rate', '50')
@@ -20,11 +22,11 @@ tts.setProperty('voice', 'english')
 
 
 sentences = [
-    "Привет, как дела?",
-    "Как тебя зовут?",
-    "Откуда ты?",
-    "Я люблю программирование!",
-    "Хорошего дня!"
+    "Hello, how are you?",
+    "What is your name?",
+    "Where are you from?",
+    "How old are you?",
+    "What do you like to do in your free time?"
 ]
 
 
@@ -62,19 +64,22 @@ window.geometry("1920x1080")
 image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((window.winfo_screenwidth(), window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
+style = ttk.Style()
+style.configure("BW.TLabel", font=("Times New Roman", 32), foreground="#183b66", padding=8, background="#8fc6da")
+style.configure("BW.TButton", font=("Times New Roman", 32, "bold"), foreground="#183b66", padding=12, background="#8fc6da")
 labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
-label = tk.Label(window, text=sentences[0], font=("Roboto", 48))
+label = ttk.Label(window, text=sentences[0], style="BW.TLabel")
 label.pack(pady=100)
-button_next = tk.Button(window, text="Next", command=next_sentence, font=("Roboto", 32))
+button_next = ttk.Button(window, text="Дальше", command=next_sentence, style="BW.TButton")
 button_next.pack(pady=10)
-button_record = tk.Button(window, text="Record voice (5 second)", command=record_voice, font=("Roboto", 32))
+button_record = ttk.Button(window, text="Записать голос (5 секунд)", command=record_voice, style="BW.TButton")
 button_record.pack(pady=10)
-button_play = tk.Button(window, text="Listen voice", command=play_audio, font=("Roboto", 32))
+button_play = ttk.Button(window, text="Прослушать голос", command=play_audio, style="BW.TButton")
 button_play.pack(pady=10)
-back_button = Button(window, text="←", font=("Roboto", 32), command=close_window)
+back_button = ttk.Button(window, text="←", style="BW.TButton", command=close_window)
 back_button.pack(pady=10)
 current_sentence_index = 0
 speak(sentences[current_sentence_index])
