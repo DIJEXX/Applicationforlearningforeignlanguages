@@ -12,7 +12,7 @@ def close_window():
 def load_words():
     global words, learned_words
     learned_words = 0
-    with open("Data/Difficulty/dictionary2.txt", "r", encoding="utf-8") as file:
+    with open("Data/Difficulty/dictionary3.txt", "r", encoding="utf-8") as file:
         lines = file.readlines()
         for line in lines:
             word, translation, learned = line.strip().split("|")
@@ -23,7 +23,7 @@ def load_words():
 
 def save_words():
     global words
-    with open("Data/Difficulty/dictionary2.txt", "w", encoding="utf-8") as file:
+    with open("Data/Difficulty/dictionary3.txt", "w", encoding="utf-8") as file:
         for word, translation, learned in words:
             file.write(f"{word}|{translation}|{str(learned)}\n")
 

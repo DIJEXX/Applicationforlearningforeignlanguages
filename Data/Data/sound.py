@@ -12,7 +12,7 @@ from PIL import Image, ImageTk
 
 def close_window():
     window.destroy()
-    os.system("python Data/main.py")
+    os.system("python Data/Data/main.py")
 
 tts = pyttsx3.init()
 tts.setProperty('rate', '50')
@@ -22,11 +22,26 @@ tts.setProperty('voice', 'english')
 
 
 sentences = [
-    "Hello, how are you?",
-    "What is your name?",
-    "Where are you from?",
-    "How old are you?",
-    "What do you like to do in your free time?"
+    "Я люблю мороженое",
+    "Сегодня прекрасный день",
+    "Могу я вам помочь?",
+    "У меня есть кошка",
+    "Какой у вас любимый цвет?",
+    "На улице идет дождь",
+    "Сколько вам лет?",
+    "Мне нравится пицца",
+    "Где вы живете?",
+    "Вы говорите по-английски?",
+    "Я устал",
+    "Который час?",
+    "Я голоден",
+    "Как вас зовут?",
+    "Мне нравится слушать музыку",
+    "Мне нравится играть в теннис",
+    "Как прошел ваш день?",
+    "Сегодня вечером я иду в кино",
+    "Мне нравится читать книги",
+    "Хорошего дня!"
 ]
 
 

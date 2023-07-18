@@ -7,22 +7,52 @@ from PIL import Image, ImageTk
 
 def close_window():
     window.destroy()
-    os.system("python Data/main.py")
+    os.system("python Data/Data/main.py")
 
 sentences = [
-    "Hello, how are you?",  # Пример предложений на английском
-    "What is your name?",
-    "Where are you from?",
-    "I love programming!",
-    "Have a nice day!"
+    "Я люблю мороженое",
+    "Сегодня прекрасный день",
+    "Могу я вам помочь?",
+    "У меня есть кошка",
+    "Какой у вас любимый цвет?",
+    "На улице идет дождь",
+    "Сколько вам лет?",
+    "Мне нравится пицца",
+    "Где вы живете?",
+    "Вы говорите по-английски?",
+    "Я устал",
+    "Который час?",
+    "Я голоден",
+    "Как вас зовут?",
+    "Мне нравится слушать музыку",
+    "Мне нравится играть в теннис",
+    "Как прошел ваш день?",
+    "Сегодня вечером я иду в кино",
+    "Мне нравится читать книги",
+    "Хорошего дня!"
 ]
 
-translations = [
-    "Привет, как дела?",  # Примеры соответствующих переводов на русский
-    "Как тебя зовут?",
-    "Откуда ты?",
-    "Я люблю программирование!",
-    "Хорошего дня!"
+sentences = [
+    "I love ice cream",
+    "Today is a beautiful day",
+    "Can I help you?",
+    "I have a cat",
+    "What's your favorite color?",
+    "It's raining outside",
+    "How old are you?",
+    "I like pizza",
+    "Where do you live?",
+    "Do you speak English?",
+    "I am tired",
+    "What time is it?",
+    "I am hungry",
+    "What's your name?",
+    "I like to listen to music",
+    "I like to play tennis",
+    "How was your day?",
+    "I'm going to the cinema tonight",
+    "I enjoy reading books",
+    "Have a nice day!"
 ]
 
 currentSentenceIndex = 0

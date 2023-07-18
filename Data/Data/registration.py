@@ -88,19 +88,19 @@ def register_user():
 
 
 def open_words_window():
-    os.system("python Data/dictionary.py")
+    os.system("python Data/Data/dictionary.py")
 
 
 def open_text_window():
-    os.system("python Data/text.py")
+    os.system("python Data/Data/text.py")
 
 
 def open_sound_window():
-    os.system("python Data/sound.py")
+    os.system("python Data/Data/sound.py")
 
 
 def open_difficulty_window():
-    os.system("Data/difficulty.py")
+    os.system("Data/Data/difficulty.py")
 
 
 def close_main_window():
@@ -112,11 +112,11 @@ def close_gl_window():
 
 
 def open_main_window():
-    os.system("python Data/main.py")
+    os.system("python Data/Data/main.py")
 
 def close_window():
     first_window.destroy()
-    os.system("python main.py")
+    os.system("python Data/main.py")
 
 first_window = Tk()
 first_window.state('zoomed')
