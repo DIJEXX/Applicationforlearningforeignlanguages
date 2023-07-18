@@ -53,9 +53,9 @@ def show_word():
     global current_word_index, words
     if current_word_index < len(words):
         word, translation, learned = words[current_word_index]
-        update_label(f"Word: {word}", "")
+        update_label(f"Слово: {word}", "")
     else:
-        update_label("No more words", "")
+        update_label("Слова закончились", "")
 
 
 def on_first_dictionary_click():
@@ -80,9 +80,9 @@ def on_check_click():
     global current_word_index, words
     if current_word_index < len(words):
         word, translation, learned = words[current_word_index]
-        update_label(f"Word: {word}", f"Translation: {translation}")
+        update_label(f"Слово: {word}", f"Перевод: {translation}")
     else:
-        update_label("No more words", "")
+        update_label("Слова закончились", "")
 
 
 def on_done_click():
@@ -92,12 +92,12 @@ def on_done_click():
         if not learned:
             words[current_word_index] = (word, translation, not learned)
             learned_words += 1
-            update_label("Word marked as learned.", "")
+            update_label("Слово выучено.", "")
             next_word_index = get_next_word_index()
             if next_word_index != -1:
                 current_word_index = next_word_index
     else:
-        update_label("No more words", "")
+        update_label("Слова закончились", "")
 
 
 def on_clear_statistics_click():
@@ -107,18 +107,18 @@ def on_clear_statistics_click():
         word, translation, learned = words[i]
         if learned:
             words[i] = (word, translation, not learned)
-    update_label("Statistics cleared.", "")
+    update_label("Прогресс очищен.", "")
 
 
 def on_save_click():
 
     save_words()
-    update_label("Dictionary saved.", "")
+    update_label("Прогресс сохранён.", "")
 
 
 def on_statistics_click():
     global learned_words
-    text = f"Learned words: {learned_words}"
+    text = f"Выученные слова: {learned_words}"
     update_label(text, "")
 
 

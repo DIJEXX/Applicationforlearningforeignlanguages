@@ -1,7 +1,7 @@
 from tkinter import Tk, Label, Button, StringVar
 from PIL import Image, ImageTk
 import os
-
+from tkinter import ttk
 
 def close_window():
     window.destroy()
@@ -38,14 +38,14 @@ labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
 selected_difficulty = StringVar()
-gl_difficulty_label = Label(window, text="Выберите сложность:", font=("Roboto", 32))
+gl_difficulty_label = ttk.Label(window, text="Выберите сложность:", style="BW.TLabel")
 gl_difficulty_label.pack(pady=100)
-gl_button_easy = Button(window, text="Легкая", command=easy, fg="green", font=("Roboto", 32))
+gl_button_easy = ttk.Button(window, text="Легкая", command=easy, style="BW.TButton")
 gl_button_easy.pack(pady=10)
-gl_button_medium = Button(window, text="Средняя", command=medium, fg="orange", font=("Roboto", 32))
+gl_button_medium = ttk.Button(window, text="Средняя", command=medium, style="BW.TButton")
 gl_button_medium.pack(pady=10)
-gl_button_hard = Button(window, text="Тяжелая", command=hard, fg="red", font=("Roboto", 32))
+gl_button_hard = ttk.Button(window, text="Тяжелая", command=hard, style="BW.TButton")
 gl_button_hard.pack(pady=10)
-back_button = Button(window, text="←", font=("Roboto", 32), command=close_window)
+back_button = ttk.Button(window, text="←", style="BW.TButton", command=close_window)
 back_button.pack(pady=10)
 window.mainloop()
