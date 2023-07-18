@@ -24,10 +24,16 @@ def login_user():
                 sql = "SELECT * FROM teamdb  WHERE username=%s AND passw=%s"
                 cursor.execute(sql, (username, passw))
                 result = cursor.fetchone()
+                a = str(result)
+
+
                 print(result)
                 if result:
-                    first_window.withdraw()
-                    open_main_window()
+                    if "''" in a:
+                        result_label.config(text="Неверные логин или пароль", fg="red")
+                    else:
+                        first_window.withdraw()
+                        open_main_window()
                 else:
                     result_label.config(text="Неверные логин или пароль", fg="red")
                 print("select")
@@ -44,6 +50,9 @@ def register_user():
     username = register_username_entry.get().strip()
     email = register_email_entry.get().strip()
     passw = register_password_entry.get().strip()
+    print(username)
+    print(email)
+    print(passw)
     try:
         connection = pymysql.connect(
             host="93.81.253.61",
@@ -62,12 +71,18 @@ def register_user():
                                      " email varchar(32)," \
                                      " passw varchar(32), PRIMARY KEY (id));"
                 cursor.execute(create_table_query)
-                insert_query = """INSERT INTO teamdb (username, email, passw) VALUES (%s, %s, %s)"""
-                vals = (username, email, passw)
-                cursor.execute(insert_query, vals)
-                result_label.config(text="Пользователь успешно зарегистрирован!", fg="green")
-                connection.commit()
-                print("Table created successfully")
+                u1 = str(username)
+                e1 = str(email)
+                p1 = str(passw)
+                if u1=='' or e1=='' or p1=='' or len(u1)<4 or e1.find('@')==-1 or e1.find('.')==-1:
+                    result_label.config(text="Ошибка регистрации", fg="red")
+                else:
+                    insert_query = """INSERT INTO teamdb (username, email, passw) VALUES (%s, %s, %s)"""
+                    vals = (username, email, passw)
+                    cursor.execute(insert_query, vals)
+                    result_label.config(text="Пользователь успешно зарегистрирован!", fg="green")
+                    connection.commit()
+                    print("Table created successfully")
         except Error as e:
             print(e)
         finally:
@@ -78,19 +93,19 @@ def register_user():
 
 
 def open_words_window():
-    os.system("python Data/dictionary.py")
+    os.system("python Words/dictionary.py")
 
 
 def open_text_window():
-    os.system("python Data/text.py")
+    os.system("python Words/text.py")
 
 
 def open_sound_window():
-    os.system("python Data/sound.py")
+    os.system("python Words/sound.py")
 
 
 def open_difficulty_window():
-    os.system("Data/difficulty.py")
+    os.system("python Words/difficulty.py")
 
 
 def close_main_window():
@@ -102,18 +117,15 @@ def close_gl_window():
 
 
 def open_main_window():
-    os.system("python Data/main.py")
+    os.system("python Words/main.py")
 
-def close_window():
-    first_window.destroy()
-    os.system("python main.py")
 
 first_window = Tk()
 first_window.state('zoomed')
 first_window.title("Accelingvo")
-first_window.iconbitmap('Data/py.ico')
+first_window.iconbitmap('Words/py.ico')
 first_window.geometry("1920x1080")
-image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
+image = Image.open("Words/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((first_window.winfo_screenwidth(), first_window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
 labell = Label()
@@ -150,6 +162,4 @@ login_button = Button(first_window, text="Войти", command=login_user, font=
 login_button.pack(pady=20)
 result_label = Label(first_window, text="", font=("Roboto", 24))
 result_label.pack()
-back_button = Button(first_window, text="←", font=("Roboto", 32), command=close_window)
-back_button.pack(pady=10)
 first_window.mainloop()
