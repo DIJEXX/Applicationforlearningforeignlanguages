@@ -28,12 +28,12 @@ def login_user():
                 print(result)
                 if result:
                     if "''" in a:
-                        result_label.config(text="Неверные логин или пароль", fg="red")
+                        result_label.config(text="Incorrect login or password", fg="red")
                     else:
                         first_window.withdraw()
                         open_main_window()
                 else:
-                    result_label.config(text="Неверные логин или пароль", fg="red")
+                    result_label.config(text="Incorrect login or password", fg="red")
                 print("select")
         except Error as e:
             print(e)
@@ -70,12 +70,12 @@ def register_user():
                 e1 = str(email)
                 p1 = str(passw)
                 if u1 == '' or e1 == '' or p1 == '' or len(u1) < 4 or e1.find('@') == -1 or e1.find('.') == -1:
-                    result_label.config(text="Ошибка регистрации", fg="red")
+                    result_label.config(text="Registration error", fg="red")
                 else:
                     insert_query = """INSERT INTO qwerty (username, email, passw) VALUES (%s, %s, %s)"""
                     vals = (username, email, passw)
                     cursor.execute(insert_query, vals)
-                    result_label.config(text="Пользователь успешно зарегистрирован!", fg="green")
+                    result_label.config(text="User successfully registered!", fg="green")
                     connection.commit()
                     print("Table created successfully")
         except Error as e:
@@ -116,7 +116,7 @@ def open_main_window():
 
 def close_window():
     first_window.destroy()
-    os.system("python Data/main.py")
+    os.system("python main.py")
 
 first_window = Tk()
 first_window.state('zoomed')
@@ -144,7 +144,7 @@ register_email_label = ttk.Label(first_window, text="Email:", style="BW.TLabel")
 register_email_label.pack()
 register_email_entry = Entry(first_window, font=("Roboto", 20))
 register_email_entry.pack()
-register_password_label = ttk.Label(first_window, text="Пароль:", style="BW.TLabel")
+register_password_label = ttk.Label(first_window, text="Password:", style="BW.TLabel")
 register_password_label.pack()
 register_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 register_password_entry.pack()
@@ -152,11 +152,11 @@ register_button = ttk.Button(first_window, text="Finish", command=register_user,
 register_button.pack(pady=20)
 login_label = ttk.Label(first_window, text="Log in", style="BW.TLabel")
 login_label.pack(pady=20)
-login_username_label = ttk.Label(first_window, text="Логин:", style="BW.TLabel")
+login_username_label = ttk.Label(first_window, text="Login:", style="BW.TLabel")
 login_username_label.pack()
 login_username_entry = Entry(first_window, font=("Roboto", 20))
 login_username_entry.pack()
-login_password_label = ttk.Label(first_window, text="Пароль:", style="BW.TLabel")
+login_password_label = ttk.Label(first_window, text="Password:", style="BW.TLabel")
 login_password_label.pack()
 login_password_entry = Entry(first_window, show="*", font=("Roboto", 20))
 login_password_entry.pack()

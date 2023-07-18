@@ -6,13 +6,13 @@ from PIL import Image, ImageTk
 
 def close_window():
     window.destroy()
-    os.system("python Data/difficulty.py")
+    os.system("python Data/Data/difficulty.py")
 
 
 def load_words():
     global words, learned_words
     learned_words = 0
-    with open("Data/Difficulty/dictionary1.txt", "r", encoding="utf-8") as file:
+    with open("Data/Data/Difficulty/dictionary2.txt", "r", encoding="utf-8") as file:
         lines = file.readlines()
         for line in lines:
             word, translation, learned = line.strip().split("|")
@@ -23,7 +23,7 @@ def load_words():
 
 def save_words():
     global words
-    with open("Data/Difficulty/dictionary1.txt", "w", encoding="utf-8") as file:
+    with open("Data/Data/Difficulty/dictionary1.txt", "w", encoding="utf-8") as file:
         for word, translation, learned in words:
             file.write(f"{word}|{translation}|{str(learned)}\n")
 
@@ -53,9 +53,9 @@ def show_word():
     global current_word_index, words
     if current_word_index < len(words):
         word, translation, learned = words[current_word_index]
-        update_label(f"Слово: {word}", "")
+        update_label(f"Word: {word}", "")
     else:
-        update_label("Слова закончились", "")
+        update_label("The words ended", "")
 
 
 def on_first_dictionary_click():
@@ -80,9 +80,9 @@ def on_check_click():
     global current_word_index, words
     if current_word_index < len(words):
         word, translation, learned = words[current_word_index]
-        update_label(f"Слово: {word}", f"Перевод: {translation}")
+        update_label(f"Word: {word}", f"Translation: {translation}")
     else:
-        update_label("Слова закончились", "")
+        update_label("The words ended", "")
 
 
 def on_done_click():
@@ -92,12 +92,12 @@ def on_done_click():
         if not learned:
             words[current_word_index] = (word, translation, not learned)
             learned_words += 1
-            update_label("Слово выучено.", "")
+            update_label("The word is learned.", "")
             next_word_index = get_next_word_index()
             if next_word_index != -1:
                 current_word_index = next_word_index
     else:
-        update_label("Слова закончились", "")
+        update_label("The words ended", "")
 
 
 def on_clear_statistics_click():
@@ -107,18 +107,18 @@ def on_clear_statistics_click():
         word, translation, learned = words[i]
         if learned:
             words[i] = (word, translation, not learned)
-    update_label("Прогресс очищен.", "")
+    update_label("Progress cleared.", "")
 
 
 def on_save_click():
 
     save_words()
-    update_label("Прогресс сохранён.", "")
+    update_label("Progress saved.", "")
 
 
 def on_statistics_click():
     global learned_words
-    text = f"Выученные слова: {learned_words}"
+    text = f"Learned words: {learned_words}"
     update_label(text, "")
 
 
@@ -142,19 +142,19 @@ label_word = ttk.Label(window, text="", justify="left", style="BW.TLabel")
 label_word.pack(pady=20)
 label_translation = ttk.Label(window, text="", justify="left", style="BW.TLabel")
 label_translation.pack(pady=20)
-first_dictionary_button = ttk.Button(window, text="Первый словарь", command=on_first_dictionary_click, style="BW.TButton")
+first_dictionary_button = ttk.Button(window, text="The first dictionary", command=on_first_dictionary_click, style="BW.TButton")
 first_dictionary_button.pack(pady=10)
-next_one_button = ttk.Button(window, text="Следующее слово", command=on_next_one_click, style="BW.TButton")
+next_one_button = ttk.Button(window, text="The next word", command=on_next_one_click, style="BW.TButton")
 next_one_button.pack(pady=10)
-check_button = ttk.Button(window, text="Проверить слово", command=on_check_click, style="BW.TButton")
+check_button = ttk.Button(window, text="Check the word", command=on_check_click, style="BW.TButton")
 check_button.pack(pady=10)
-done_button = ttk.Button(window, text="Выполнено", command=on_done_click, style="BW.TButton")
+done_button = ttk.Button(window, text="Done", command=on_done_click, style="BW.TButton")
 done_button.pack(pady=10)
-clear_statistics_button = ttk.Button(window, text="Очистить статистику", command=on_clear_statistics_click, style="BW.TButton")
+clear_statistics_button = ttk.Button(window, text="Clear statistics", command=on_clear_statistics_click, style="BW.TButton")
 clear_statistics_button.pack(pady=10)
-save_button = ttk.Button(window, text="Сохранить словарь", command=on_save_click, style="BW.TButton")
+save_button = ttk.Button(window, text="Save dictionary", command=on_save_click, style="BW.TButton")
 save_button.pack(pady=10)
-statistics_button = ttk.Button(window, text="Статистика", command=on_statistics_click, style="BW.TButton")
+statistics_button = ttk.Button(window, text="Statistics", command=on_statistics_click, style="BW.TButton")
 statistics_button.pack(pady=10)
 back_button = ttk.Button(window, text="←", command=close_window, style="BW.TButton")
 back_button.pack(pady=10)

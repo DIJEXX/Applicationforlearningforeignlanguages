@@ -32,7 +32,7 @@ sentences = [
     "Хорошего дня!"
 ]
 
-sentences = [
+translations = [
     "I love ice cream",
     "Today is a beautiful day",
     "Can I help you?",
@@ -84,9 +84,9 @@ def showSentence():
 def checkTranslation():
     translation = translation_entry.get()
     if translation == currentTranslation:
-        result_label.config(text="Правильный перевод!", fg="green", font=("Roboto", 32))
+        result_label.config(text="Correct translation!", fg="green", font=("Roboto", 32))
     else:
-        result_label.config(text="Неправильный перевод!", fg="red", font=("Roboto", 32))
+        result_label.config(text="Wrong translation!", fg="red", font=("Roboto", 32))
     translation_entry.delete(0, tk.END)
     getNextSentence()
 
@@ -109,11 +109,11 @@ sentence_label = ttk.Label(window, text=currentSentence, style="BW.TLabel")
 sentence_label.pack(pady=100)
 translation_entry = tk.Entry(window, fg="#000", font=("Roboto", 32))
 translation_entry.pack()
-check_button = ttk.Button(window, text="Проверить", command=checkTranslation, style="BW.TButton")
+check_button = ttk.Button(window, text="Check", command=checkTranslation, style="BW.TButton")
 check_button.pack(pady=50)
 result_label = Label(window, text="", font=("Roboto", 32))
 result_label.pack()
-next_button = ttk.Button(window, text="Следующее предложение", command=getNextSentence, style="BW.TButton")
+next_button = ttk.Button(window, text="Next sentence", command=getNextSentence, style="BW.TButton")
 next_button.pack(pady=50)
 back_button = ttk.Button(window, text="←", command=close_window, style="BW.TButton")
 back_button.pack(pady=10)
