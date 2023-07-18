@@ -1,0 +1,21 @@
+﻿Collateral, pledge|Обеспечение, залог|False
+Change of internal procedures|Изменение внутренних процедур|False
+To submit a claim|Направить иск|False
+Claim|Иск, претензия|False
+Monitoring of payments; (out of schedule)|Контроль платежей; (вне графика)|False
+Insurance payment|Выплата СК|False
+Inheritance rights; to join the right of inheritance|Права наследования; вступать в наследство|False
+Write off the balance sheet|Списать с баланса|False
+Cancel, abolish, repeal|Отменять, аннулировать|False
+Cancellation, abolition, repeal|Отмена, аннулирование|False
+On the contrary|Наоборот|False
+Treasury|Казначейство, казна|False
+So called|Так называемый|False
+Swings; mood swings|Качели, перепады настроения|False
+Early, preschedule|Досрочный|False
+Additionally, besides|Кроме того|False
+Moreover|Более того|False
+Especially|Особенно|False
+Boring|Скучный|False
+Hand, arm|Рука|False
+Back|Спина|False

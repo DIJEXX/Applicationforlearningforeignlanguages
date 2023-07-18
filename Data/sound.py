@@ -1,10 +1,22 @@
 import tkinter as tk
-from tkinter import messagebox, Label
+from tkinter import messagebox, Label, Tk, Button
 import pyttsx3
 import sounddevice as sd
 from scipy.io.wavfile import write
 from playsound import playsound
 from PIL import Image, ImageTk
+import os
+
+
+def close_window():
+    window.destroy()
+    os.system("python Data/main.py")
+
+tts = pyttsx3.init()
+tts.setProperty('rate', '50')
+tts.setProperty('volume', 1.0)
+tts.setProperty('language', 'english')
+tts.setProperty('voice', 'english')
 
 
 sentences = [
@@ -14,13 +26,12 @@ sentences = [
     "How old are you?",
     "What do you like to do in your free time?"
 ]
-engine = pyttsx3.init()
+
 
 
 def speak(text):
-    engine.say(text)
-    engine.runAndWait()
-
+    tts.runAndWait()
+    tts.say(text)
 
 def next_sentence():
     global current_sentence_index
@@ -46,9 +57,9 @@ def play_audio():
 window = tk.Tk()
 window.state('zoomed')
 window.title("Accelingvo")
-window.iconbitmap('Words/py.ico')
+window.iconbitmap('Data/py.ico')
 window.geometry("1920x1080")
-image = Image.open("Words/background.jpg")  # Замените на путь к вашему фоновому изображению
+image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((window.winfo_screenwidth(), window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
 labell = Label()
@@ -59,10 +70,12 @@ label = tk.Label(window, text=sentences[0], font=("Roboto", 48))
 label.pack(pady=100)
 button_next = tk.Button(window, text="Дальше", command=next_sentence, font=("Roboto", 32))
 button_next.pack(pady=10)
-button_record = tk.Button(window, text="Записать голос", command=record_voice, font=("Roboto", 32))
+button_record = tk.Button(window, text="Записать голос (5 секунд)", command=record_voice, font=("Roboto", 32))
 button_record.pack(pady=10)
 button_play = tk.Button(window, text="Прослушать голос", command=play_audio, font=("Roboto", 32))
 button_play.pack(pady=10)
+back_button = Button(window, text="←", font=("Roboto", 32), command=close_window)
+back_button.pack(pady=10)
 current_sentence_index = 0
 speak(sentences[current_sentence_index])
 window.mainloop()

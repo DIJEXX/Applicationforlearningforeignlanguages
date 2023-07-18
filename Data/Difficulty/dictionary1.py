@@ -1,11 +1,17 @@
 from tkinter import Tk, Label, Button
 from PIL import Image, ImageTk
+import os
+
+
+def close_window():
+    window.destroy()
+    os.system("python Data/difficulty.py")
 
 
 def load_words():
     global words, learned_words
     learned_words = 0
-    with open("Words/dictionary.txt", "r", encoding="utf-8") as file:
+    with open("Data/Difficulty/dictionary1.txt", "r", encoding="utf-8") as file:
         lines = file.readlines()
         for line in lines:
             word, translation, learned = line.strip().split("|")
@@ -16,7 +22,7 @@ def load_words():
 
 def save_words():
     global words
-    with open("Words/dictionary.txt", "w", encoding="utf-8") as file:
+    with open("Data/Difficulty/dictionary1.txt", "w", encoding="utf-8") as file:
         for word, translation, learned in words:
             file.write(f"{word}|{translation}|{str(learned)}\n")
 
@@ -119,7 +125,7 @@ window = Tk()
 window.state('zoomed')
 window.title("Accelingvo")
 window.geometry("1920x1080")
-image = Image.open("Words/background.jpg")  # Замените на путь к вашему фоновому изображению
+image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((window.winfo_screenwidth(), window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
 labell = Label()
@@ -145,4 +151,6 @@ save_button = Button(window, text="Сохранить словарь", font=("Ro
 save_button.pack(pady=10)
 statistics_button = Button(window, text="Статистика", font=("Roboto", 32), command=on_statistics_click)
 statistics_button.pack(pady=10)
+back_button = Button(window, text="←", font=("Roboto", 32), command=close_window)
+back_button.pack(pady=10)
 window.mainloop()

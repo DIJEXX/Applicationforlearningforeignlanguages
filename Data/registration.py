@@ -78,19 +78,19 @@ def register_user():
 
 
 def open_words_window():
-    os.system("python Words/dictionary.py")
+    os.system("python Data/dictionary.py")
 
 
 def open_text_window():
-    os.system("python Words/text.py")
+    os.system("python Data/text.py")
 
 
 def open_sound_window():
-    os.system("python Words/sound.py")
+    os.system("python Data/sound.py")
 
 
 def open_difficulty_window():
-    os.system("python Words/difficulty.py")
+    os.system("Data/difficulty.py")
 
 
 def close_main_window():
@@ -102,15 +102,18 @@ def close_gl_window():
 
 
 def open_main_window():
-    os.system("python Words/main.py")
+    os.system("python Data/main.py")
 
+def close_window():
+    first_window.destroy()
+    os.system("python main.py")
 
 first_window = Tk()
 first_window.state('zoomed')
 first_window.title("Accelingvo")
-first_window.iconbitmap('Words/py.ico')
+first_window.iconbitmap('Data/py.ico')
 first_window.geometry("1920x1080")
-image = Image.open("Words/background.jpg")  # Замените на путь к вашему фоновому изображению
+image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((first_window.winfo_screenwidth(), first_window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
 labell = Label()
@@ -147,4 +150,6 @@ login_button = Button(first_window, text="Войти", command=login_user, font=
 login_button.pack(pady=20)
 result_label = Label(first_window, text="", font=("Roboto", 24))
 result_label.pack()
+back_button = Button(first_window, text="←", font=("Roboto", 32), command=close_window)
+back_button.pack(pady=10)
 first_window.mainloop()
