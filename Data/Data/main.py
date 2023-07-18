@@ -27,6 +27,7 @@ main_window.title("Accelingvo")
 main_window.state('zoomed')
 main_window.iconbitmap('Data/py.ico')
 main_window.geometry("1920x1080")
+main_window.configure(bg='blue')
 image = Image.open("Data/background.jpg")  # Замените на путь к вашему фоновому изображению
 image = image.resize((main_window.winfo_screenwidth(), main_window.winfo_screenheight()))
 background_image = ImageTk.PhotoImage(image)
