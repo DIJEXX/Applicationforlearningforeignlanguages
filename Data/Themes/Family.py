@@ -1,5 +1,4 @@
 import tkinter as tk
-import random
 import os
 from tkinter import *
 from tkinter import ttk
@@ -24,6 +23,8 @@ labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
+gl_difficulty_label = ttk.Label(window, text="Собери пару (Семья):", style="BW.TLabel")
+gl_difficulty_label.pack(pady=100)
 back_button = ttk.Button(window, text="←", command=close_window, style="BW.TButton")
 back_button.pack(pady=10)
 window.mainloop()
