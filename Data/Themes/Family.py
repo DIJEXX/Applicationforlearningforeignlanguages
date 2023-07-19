@@ -4,7 +4,8 @@ import os
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
-# Предложения на английском и русском
+
+
 sentences = [
 ("Family is the most important thing in my life.", "Семья - самое важное в моей жизни."),
 ("We are going to visit my grandparents this weekend.", "В эти выходные мы собираемся навестить моих бабушку и дедушку."),
@@ -39,7 +40,7 @@ sentences = [
 ("She has a beautiful family portrait hanging on the wall.", "У нее висит красивый семейный портрет на стене."),
 ]
 
-# Создание главного окна
+
 root = tk.Tk()
 root.title("Accelingvo")
 root.state('zoomed')
@@ -48,10 +49,11 @@ root.iconbitmap('Data/py.ico')
 
 # Создание стиля для текста и кнопки
 style = ttk.Style()
-style.configure('English.TLabel', font=("Times New Roman", 32), foreground="#183b66", padding=8, background="#8fc6da")
-style.configure('Russian.TLabel', font=("Times New Roman", 32), foreground="#183b66", padding=8, background="#8fc6da")
+style.configure('English.TLabel', font=("Times New Roman", 24), foreground="#183b66", padding=8, background="#8fc6da")
+style.configure('Russian.TLabel', font=("Times New Roman", 24), foreground="#183b66", padding=8, background="#8fc6da")
 style.configure('Next.TButton', font=("Times New Roman", 32, "bold"), foreground="#183b66", padding=12, background="#8fc6da")
-# Функция для показа случайных предложений
+
+
 def show_random_sentences():
     random.shuffle(sentences)
     english_text.set("English:\n{}\n{}\n{}\n{}\n{}".format(
@@ -74,13 +76,14 @@ labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
-english_label = ttk.Label(root, textvariable=english_text, style='English.TLabel', justify=tk.LEFT)
-english_label.pack(pady=20)
-russian_label = ttk.Label(root, textvariable=russian_text, style='Russian.TLabel', justify=tk.LEFT)
-russian_label.pack()
-next_button = ttk.Button(root, text="Дальше", command=show_random_sentences, style='Next.TButton')
-next_button.pack(pady=20)
 back_button = ttk.Button(root, text="←", style="Next.TButton", command=close_window)
+back_button.pack(side=BOTTOM, pady=40)
+next_button = ttk.Button(root, text="Дальше", command=show_random_sentences, style='Next.TButton')
+next_button.pack(side=BOTTOM)
+english_label = ttk.Label(root, textvariable=english_text, style='English.TLabel', justify=tk.LEFT)
+english_label.pack(side=LEFT, fill=X, expand=True)
+russian_label = ttk.Label(root, textvariable=russian_text, style='Russian.TLabel', justify=tk.LEFT)
+russian_label.pack(side=RIGHT, fill=X, expand=True)
 back_button.pack()
 show_random_sentences()
 root.mainloop()
