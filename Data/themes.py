@@ -7,8 +7,12 @@ def close_window():
     window.destroy()
     os.system("python Data/main.py")
 
+def Popular():
+    window.destroy()
+    os.system("python Data/Themes/Popular.py")
 
 def Family():
+    window.destroy()
     os.system("python Data/Themes/Family.py")
 
 
@@ -32,9 +36,10 @@ labell = Label()
 labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
-selected_difficulty = StringVar()
 gl_difficulty_label = ttk.Label(window, text="Выберите тему:", style="BW.TLabel")
 gl_difficulty_label.pack(pady=100)
+gl_button_easy = ttk.Button(window, text="Распространённые", command=Popular, style="BW.TButton")
+gl_button_easy.pack(pady=10)
 gl_button_easy = ttk.Button(window, text="Семья", command=Family, style="BW.TButton")
 gl_button_easy.pack(pady=10)
 gl_button_medium = ttk.Button(window, text="Школа", command=School, style="BW.TButton")
