@@ -5,21 +5,21 @@ from PIL import Image, ImageTk
 
 def open_words_window():
     main_window.destroy()
-    os.system("python Data/Data/difficulty.py")
+    os.system("python Data/Eng/difficulty.py")
 
 
 def open_text_window():
     main_window.destroy()
-    os.system("python Data/Data/text.py")
+    os.system("python Data/Eng/text.py")
 
 
 def open_sound_window():
     main_window.destroy()
-    os.system("python Data/Data/sound.py")
+    os.system("python Data/Eng/sound.py")
 
 def close_main_window():
     main_window.destroy()
-    os.system("python Data/Data/registration.py")
+    os.system("python Data/Eng/registration.py")
 
 
 main_window = Tk()

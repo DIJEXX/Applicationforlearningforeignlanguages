@@ -7,7 +7,7 @@ from PIL import Image, ImageTk
 
 def close_window():
     window.destroy()
-    os.system("python Data/Data/main.py")
+    os.system("python Data/Eng/main.py")
 
 sentences = [
     "Я люблю мороженое",

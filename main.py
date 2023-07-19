@@ -10,7 +10,7 @@ def close_window():
 
 def close_window1():
     window.destroy()
-    os.system("python Data/Data/registration.py")
+    os.system("python Data/Eng/registration.py")
 
 
 window = Tk()

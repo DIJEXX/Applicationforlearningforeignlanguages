@@ -6,13 +6,13 @@ from PIL import Image, ImageTk
 
 def close_window():
     window.destroy()
-    os.system("python Data/Data/difficulty.py")
+    os.system("python Data/Eng/difficulty.py")
 
 
 def load_words():
     global words, learned_words
     learned_words = 0
-    with open("Data/Data/Difficulty/dictionary1.txt", "r", encoding="utf-8") as file:
+    with open("Data/Eng/Difficulty/dictionary3.txt", "r", encoding="utf-8") as file:
         lines = file.readlines()
         for line in lines:
             word, translation, learned = line.strip().split("|")
@@ -23,7 +23,7 @@ def load_words():
 
 def save_words():
     global words
-    with open("Data/Difficulty/dictionary1.txt", "w", encoding="utf-8") as file:
+    with open("Data/Eng/Difficulty/dictionary1.txt", "w", encoding="utf-8") as file:
         for word, translation, learned in words:
             file.write(f"{word}|{translation}|{str(learned)}\n")
 

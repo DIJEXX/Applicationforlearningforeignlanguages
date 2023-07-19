@@ -88,19 +88,19 @@ def register_user():
 
 
 def open_words_window():
-    os.system("python Data/Data/dictionary.py")
+    os.system("python Data/Eng/dictionary.py")
 
 
 def open_text_window():
-    os.system("python Data/Data/text.py")
+    os.system("python Data/Eng/text.py")
 
 
 def open_sound_window():
-    os.system("python Data/Data/sound.py")
+    os.system("python Data/Eng/sound.py")
 
 
 def open_difficulty_window():
-    os.system("Data/Data/difficulty.py")
+    os.system("Data/Eng/difficulty.py")
 
 
 def close_main_window():
@@ -112,7 +112,7 @@ def close_gl_window():
 
 
 def open_main_window():
-    os.system("python Data/Data/main.py")
+    os.system("python Data/Eng/main.py")
 
 def close_window():
     first_window.destroy()

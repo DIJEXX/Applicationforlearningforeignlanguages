@@ -5,22 +5,22 @@ from tkinter import ttk
 
 def close_window():
     window.destroy()
-    os.system("python Data/Data/main.py")
+    os.system("python Data/Eng/main.py")
 
 
 def easy():
     window.destroy()
-    os.system("python Data/Data/Difficulty/dictionary1.py")
+    os.system("python Data/Eng/Difficulty/dictionary1.py")
 
 
 def medium():
     window.destroy()
-    os.system("python Data/Data/Difficulty/dictionary2.py")
+    os.system("python Data/Eng/Difficulty/dictionary2.py")
 
 
 def hard():
     window.destroy()
-    os.system("python Data/Data/Difficulty/dictionary3.py")
+    os.system("python Data/Eng/Difficulty/dictionary3.py")
 
 window = Tk()
 window.state('zoomed')
