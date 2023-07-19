@@ -6,37 +6,37 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 # Предложения на английском и русском
 sentences = [
-    ("I like to watch movies.", "Мне нравится смотреть фильмы."),
-    ("She speaks three languages.", "Она говорит на трех языках."),
-    ("He is a talented musician.", "Он талантливый музыкант."),
-    ("Do you want to go for a walk?", "Хочешь пойти на прогулку?"),
-    ("My favorite color is blue.", "Мой любимый цвет - синий."),
-    ("We went to the beach yesterday.", "Вчера мы поехали на пляж."),
-    ("She is a great dancer.", "Она отличная танцовщица."),
-    ("I have a pet cat.", "У меня есть домашний кот."),
-    ("They live in a beautiful house.", "Они живут в красивом доме."),
-    ("He plays the guitar very well.", "Он очень хорошо играет на гитаре."),
-    ("I'm studying computer science.", "Я изучаю компьютерные науки."),
-    ("She enjoys reading books.", "Ей нравится читать книги."),
-    ("Do you have any siblings?", "У тебя есть братья или сестры?"),
-    ("He works as a software engineer.", "Он работает инженером-программистом."),
-    ("My parents are coming to visit.", "Мои родители приезжают в гости."),
-    ("She likes to play tennis.", "Ей нравится играть в теннис."),
-    ("I want to learn how to cook.", "Я хочу научиться готовить."),
-    ("We need to buy some groceries.", "Нам нужно купить продукты."),
-    ("He is always on time.", "Он всегда приходит вовремя."),
-    ("She is a good friend.", "Она хороший друг."),
-    ("Do you have any plans for the weekend?", "У тебя есть планы на выходные?"),
-    ("I'm going to visit my grandparents.", "Я собираюсь навестить своих бабушку и дедушку."),
-    ("She wants to become a doctor.", "Она хочет стать врачом."),
-    ("I need to buy a new phone.", "Мне нужно купить новый телефон."),
-    ("We are going on a trip next week.", "Мы собираемся в путешествие на следующей неделе."),
-    ("He is a talented artist.", "Он талантливый художник."),
-    ("She has a beautiful voice.", "У нее красивый голос."),
-    ("Do you like to go hiking?", "Тебе нравится ходить в походы?"),
-    ("I'm excited about the concert tonight.", "Я взволнована концертом сегодня вечером."),
-    ("She enjoys playing video games.", "Ей нравится играть в видеоигры."),
-    ("I have a meeting at 3 PM.", "У меня встреча в 15:00."),
+("Family is the most important thing in my life.", "Семья - самое важное в моей жизни."),
+("We are going to visit my grandparents this weekend.", "В эти выходные мы собираемся навестить моих бабушку и дедушку."),
+("He has a big family with four siblings.", "У него большая семья из четырех братьев и сестер."),
+("Family gatherings are always filled with laughter and joy.", "Семейные собрания всегда наполнены смехом и радостью."),
+("She comes from a close-knit family.", "Она из семьи, где все близки друг другу."),
+("I have fond memories of family vacations.", "У меня есть приятные воспоминания о семейных отпусках."),
+("Family traditions are important to uphold.", "Семейные традиции важно сохранять."),
+("My family has a tradition of having a big feast on holidays.", "У нашей семьи есть традиция устраивать большой праздничный пир."),
+("She has a strong bond with her family.", "У нее крепкая связь со своей семьей."),
+("I'm grateful for the love and support of my family.", "Я благодарен за любовь и поддержку своей семьи."),
+("Having a loving family is a blessing.", "Иметь любящую семью - благословение."),
+("She cherishes the time spent with her family.", "Она ценит время, проведенное с семьей."),
+("Family reunions bring everyone together.", "Семейные воссоединения сближают всех."),
+("She is a dedicated mother who always puts her family first.", "Она преданная мать, которая всегда ставит свою семью на первое место."),
+("I'm proud to be a part of such a wonderful family.", "Я горжусь, что являюсь частью такой замечательной семьи."),
+("Family support is crucial during difficult times.", "Семейная поддержка является важной в трудные времена."),
+("She has a large extended family.", "У нее большая расширенная семья."),
+("I have two loving parents who always support me.", "У меня двое любящих родителей, которые всегда меня поддерживают."),
+("Family values play a significant role in shaping a person's character.", "Семейные ценности играют важную роль в формировании характера человека."),
+("She enjoys spending quality time with her family.", "Ей нравится проводить качественное время со своей семьей."),
+("Family is a source of strength and comfort.", "Семья - источник силы и утешения."),
+("He is the head of the family.", "Он глава семьи."),
+("I have a large family tree with many relatives.", "У меня большое семейное древо с множеством родственников."),
+("She has a happy and loving family.", "У нее счастливая и любящая семья."),
+("I'm looking forward to the family gathering next week.", "Я с нетерпением жду семейного собрания на следующей неделе."),
+("Family bonds are unbreakable.", "Семейные связи нерушимы."),
+("She has a big, noisy family, but she loves them all.", "У нее большая, шумная семья, но она всех их любит."),
+("I enjoy family picnics in the park.", "Мне нравятся семейные пикники в парке."),
+("She shares a close relationship with her siblings.", "У нее тесные отношения с братьями и сестрами."),
+("Family is a place where you can always find love and acceptance.", "Семья - это место, где всегда можно найти любовь и принятие."),
+("She has a beautiful family portrait hanging on the wall.", "У нее висит красивый семейный портрет на стене."),
 ]
 
 # Создание главного окна
@@ -75,12 +75,12 @@ labell.pack()
 labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
 english_label = ttk.Label(root, textvariable=english_text, style='English.TLabel', justify=tk.LEFT)
-english_label.pack(pady=10)
+english_label.pack(pady=20)
 russian_label = ttk.Label(root, textvariable=russian_text, style='Russian.TLabel', justify=tk.LEFT)
 russian_label.pack()
 next_button = ttk.Button(root, text="Дальше", command=show_random_sentences, style='Next.TButton')
-next_button.pack(pady=10)
+next_button.pack(pady=20)
 back_button = ttk.Button(root, text="←", style="Next.TButton", command=close_window)
-back_button.pack(pady=10)
+back_button.pack()
 show_random_sentences()
 root.mainloop()
