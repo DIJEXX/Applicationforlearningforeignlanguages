@@ -6,7 +6,7 @@ from PIL import Image, ImageTk
 
 def close_window():
     window.destroy()
-    os.system("python Data/registration.py")
+    os.system("python Data/main.py")
 
 def close_window1():
     window.destroy()
