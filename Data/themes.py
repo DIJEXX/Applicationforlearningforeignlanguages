@@ -9,7 +9,6 @@ def close_window():
 
 
 def Family():
-    window.destroy()
     os.system("python Data/Themes/Family.py")
 
 
