@@ -56,9 +56,9 @@ style.configure('Next.TButton', font=("Times New Roman", 32, "bold"), foreground
 
 def show_random_sentences():
     random.shuffle(sentences)
-    english_text.set("English:\n{}\n{}\n{}\n{}\n{}".format(
+    english_text.set("Английский:\n{}\n{}\n{}\n{}\n{}".format(
         sentences[0][0], sentences[1][0], sentences[2][0], sentences[3][0], sentences[4][0]))
-    russian_text.set("Russian:\n{}\n{}\n{}\n{}\n{}".format(
+    russian_text.set("Русский:\n{}\n{}\n{}\n{}\n{}".format(
         sentences[0][1], sentences[1][1], sentences[2][1], sentences[3][1], sentences[4][1]))
 
 def close_window():
