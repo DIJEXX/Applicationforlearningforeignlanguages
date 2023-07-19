@@ -3,6 +3,12 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 
+
+def open_themes_window():
+    main_window.destroy()
+    os.system("python Data/Eng/themes.py")
+
+
 def open_words_window():
     main_window.destroy()
     os.system("python Data/Eng/difficulty.py")
@@ -39,6 +45,8 @@ labell.configure(image=background_image)
 labell.place(relx=0, rely=0)
 welcome_label = ttk.Label(main_window, text="Main menu", style="BW.TLabel")
 welcome_label.pack(pady=100)
+words_button = ttk.Button(main_window, text="Themes", command=open_themes_window, style="BW.TButton")
+words_button.pack(pady=10)
 words_button = ttk.Button(main_window, text="Dictionaries", command=open_words_window, style="BW.TButton")
 words_button.pack(pady=10)
 text_button = ttk.Button(main_window, text="Sentences", command=open_text_window, style="BW.TButton")
