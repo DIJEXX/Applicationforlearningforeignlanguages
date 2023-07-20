@@ -17,15 +17,12 @@ def login_user():
             database="sakila",
             cursorclass=pymysql.cursors.DictCursor
         )
-        print("successfully connected...")
-        print("#" * 20)
         try:
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM qwerty  WHERE username=%s AND passw=%s"
                 cursor.execute(sql, (username, passw))
                 result = cursor.fetchone()
                 a = str(result)
-                print(result)
                 if result:
                     if "''" in a:
                         result_label.config(text="Неверные логин или пароль", fg="red")
@@ -34,14 +31,12 @@ def login_user():
                         open_main_window()
                 else:
                     result_label.config(text="Неверные логин или пароль", fg="red")
-                print("select")
         except Error as e:
-            print(e)
+            pass
         finally:
             connection.close()
     except Exception as ex:
-        print("Connection refused...")
-        print(ex)
+        pass
 
 
 def register_user():
@@ -57,8 +52,6 @@ def register_user():
             database="sakila",
             cursorclass=pymysql.cursors.DictCursor
         )
-        print("successfully connected...")
-        print("#" * 20)
         try:
             with connection.cursor() as cursor:
                 create_table_query = "CREATE TABLE IF NOT EXISTS `qwerty`(id int AUTO_INCREMENT," \
@@ -77,14 +70,12 @@ def register_user():
                     cursor.execute(insert_query, vals)
                     result_label.config(text="Пользователь успешно зарегистрирован!", fg="green")
                     connection.commit()
-                    print("Table created successfully")
         except Error as e:
-            print(e)
+            pass
         finally:
             connection.close()
     except Exception as ex:
-        print("Connection refused...")
-        print(ex)
+        pass
 
 
 def open_words_window():
