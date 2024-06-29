@@ -4,17 +4,23 @@ from pymysql import Error
 import os
 from tkinter import *
 from PIL import Image, ImageTk
+#import hashlib
+ 
+#md5_hash = hashlib.new('md5')
+#sha256_hash = hashlib.new('sha256')
+
+
 
 def login_user():
     username = login_username_entry.get()
     passw = login_password_entry.get()
     try:
         connection = pymysql.connect(
-            host="93.81.253.61",
+            host="eafeb0818eeaf321f361223cf588e267",
             port=3306,
-            user="chelik",
-            password="1234",
-            database="sakila",
+            user="726ecc36c3c8542c1070ad382638e8c8",
+            password="45337ab528ab456381fd0fe311633a6b",
+            database="659d7567c3dad19f5fa79210868d6889",
             cursorclass=pymysql.cursors.DictCursor
         )
         try:
